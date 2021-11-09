@@ -6,6 +6,8 @@ import Orgs from '@/views/Orgs.vue';
 import Projects from '@/views/Projects.vue';
 
 const routes: Array<RouteRecordRaw> = [
+  { path: '/404', component: Home },
+
   {
     component: Home,
     path: '/',
@@ -22,7 +24,7 @@ const routes: Array<RouteRecordRaw> = [
     component: Projects,
     path: '/project/:id',
     name: 'Projects',
-    meta: { title: 'Organization' },
+    meta: { title: 'Projects' },
   },
   {
     component: About,

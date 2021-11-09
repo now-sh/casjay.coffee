@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+  <title>404 Not Found</title>
+  <meta name="description" content="404 Not Found" />
+  <link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.css" />
+  <link rel="stylesheet"
+    href="https://raw.githubusercontent.com/casjay-templates/default-web-assets/main/css/casjaysdev.css" />
+  <link rel="stylesheet"
+    href="https://raw.githubusercontent.com/casjay-templates/default-web-assets/main/css/errorpages/default.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+  <script
+    src="https://raw.githubusercontent.com/casjay-templates/default-web-assets/main/js/errorpages/isup.js"></script>
+  <script
+    src="https://raw.githubusercontent.com/casjay-templates/default-web-assets/main/js/errorpages/homepage.js"></script>
+  <script
+    src="https://raw.githubusercontent.com/casjay-templates/default-web-assets/main/js/errorpages/loaddomain.js"></script>
+</head>
+
+<body onload="javascript:loadDomain();">
+  <!-- Error Page Content -->
+  <div class="container">
+    <div class="jumbotron">
+      <h1>
+        <i class="fa fa-frown-o red"></i>
+        <a href="https://www.google.com/search?q=server+error+404" target="_blank">404 Not Found</a>
+      </h1>
+      <br />
+      <p class="lead">
+        We apologize but we can't seem to be able to find what you're looking for!<br />
+      </p>
+
+      <div class="container">
+        <div class="body-content">
+          <img alt="error"
+            src="https://raw.githubusercontent.com/casjay-templates/default-web-assets/main/icons/errors/404.gif" /><br />
+        </div>
+      </div>
+      <a onclick="javascript:homepage();" class="btn btn-secondary btn-outline-danger btn-lg btn-block"><span
+          id="display-domain"></span></a>
+    </div>
+  </div>
+
+  <!--Scripts-->
+  <script
+    src="https://raw.githubusercontent.com/casjay-templates/default-web-assets/main/js/jquery/default.js"></script>
+  <script
+    src="https://raw.githubusercontent.com/casjay-templates/default-web-assets/main/js/bootstrap/default.js"></script>
+</body>
+
+</html>
