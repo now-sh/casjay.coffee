@@ -17,13 +17,12 @@ const routes: Array<RouteRecordRaw> = [
     path: '/orgs',
     name: 'Organizations',
     meta: { title: 'Organizations' },
-    children: [
-      {
-        path: '/orgs/:id',
-        name: 'Projects',
-        component: Projects,
-      },
-    ],
+  },
+  {
+    component: Projects,
+    path: '/orgs/:id',
+    name: 'Projects',
+    meta: { title: 'Organization' },
   },
   {
     component: About,

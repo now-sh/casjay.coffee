@@ -24,7 +24,6 @@
                 >GitHub</a
               >
               <a :href="`/orgs/${Org.login}`" class="btn btn-danger card-link">Projects</a><br />
-              <small class="text-muted">Last updated: {{ Org.updated_at }}</small>
             </div>
           </div>
         </div>
