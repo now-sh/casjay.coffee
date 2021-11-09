@@ -3,6 +3,9 @@
     <router-link to="/" style="width: 100px" class="text-left justify-content-between"
       ><img src="/logo.png" height="64" width="64" alt="Home" />
     </router-link>
+    <router-link to="/orgs" type="button" class="btn-lg btn-outline-info">
+      Organizations
+    </router-link>
     <router-link to="/about" type="button" class="btn-lg btn-outline-info"> About </router-link>
   </div>
   <router-view />

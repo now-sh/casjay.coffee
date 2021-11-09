@@ -1,24 +1,51 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import Home from '../views/Home.vue';
-import About from '../views/About.vue';
+import { createRouter, createWebHistory, Router, RouteRecordRaw } from 'vue-router';
 
-const BASE_URL = process.env.BASE_URL || '/';
+import Home from '@/views/Home.vue';
+import About from '@/views/About.vue';
+import Orgs from '@/views/Orgs.vue';
+import Projects from '@/components/Projects.vue';
+
 const routes: Array<RouteRecordRaw> = [
   {
+    component: Home,
     path: '/',
     name: 'Home',
-    component: Home,
+    meta: { title: 'Home' },
   },
   {
+    component: Orgs,
+    path: '/orgs',
+    name: 'Organizations',
+    meta: { title: 'Organizations' },
+    children: [
+      {
+        path: '/projects/:id',
+        name: 'Projects',
+        component: Projects,
+      },
+    ],
+  },
+  {
+    component: About,
     path: '/about',
     name: 'About',
-    component: About,
+    meta: { title: 'About' },
   },
 ];
 
-const router = createRouter({
-  history: createWebHistory(BASE_URL),
+const router: Router = createRouter({
+  history: createWebHistory(),
   routes,
+});
+
+router.afterEach((to) => {
+  const baseTitle = '';
+
+  if (to.name === 'Home') {
+    document.title = baseTitle;
+  } else {
+    document.title = `${to.meta.title} ${baseTitle}`;
+  }
 });
 
 export default router;
