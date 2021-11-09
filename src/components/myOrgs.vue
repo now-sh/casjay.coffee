@@ -19,7 +19,7 @@
             <div class="card-footer">
               <a href="#" class="btn btn-primary card-link">Card link</a>
               <a href="#" class="btn btn-danger card-link">Another link</a><br />
-              <small class="text-muted">Last updated {{ formatYmd('Org.updated_at'()) }}</small>
+              <small class="text-muted">Last updated: {{ Org.updated_at }}</small>
             </div>
           </div>
         </div>
@@ -33,12 +33,9 @@
 import { Options, Vue } from 'vue-class-component';
 import axios from 'axios';
 
-const formatYmd = (date) => date.toISOString().slice(0, 10);
-
 @Options({
   props: {
     msg: String,
-    formatYmd,
   },
   components: {},
   computed: {},
