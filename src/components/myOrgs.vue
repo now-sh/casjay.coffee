@@ -23,8 +23,7 @@
                 target="_blank"
                 >GitHub</a
               >
-              <a :href="`/Projects/${Org.login}`" class="btn btn-danger card-link">Projects</a
-              ><br />
+              <a :href="`/orgs/${Org.login}`" class="btn btn-danger card-link">Projects</a><br />
               <small class="text-muted">Last updated: {{ Org.updated_at }}</small>
             </div>
           </div>
@@ -54,7 +53,6 @@ import axios from 'axios';
   mounted() {
     axios.get('https://api.casjay.vercel.app/api/v1/git/orgs/casjay').then((response) => {
       this.setOrgs = response.data;
-      console.log(response.data);
     });
   },
 })

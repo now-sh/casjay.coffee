@@ -19,7 +19,7 @@ const routes: Array<RouteRecordRaw> = [
     meta: { title: 'Organizations' },
     children: [
       {
-        path: '/projects/:id',
+        path: '/orgs/:id',
         name: 'Projects',
         component: Projects,
       },
