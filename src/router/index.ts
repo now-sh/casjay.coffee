@@ -40,12 +40,7 @@ const router: Router = createRouter({
 
 router.afterEach((to) => {
   const baseTitle = '';
-
-  if (to.name === 'Home') {
-    document.title = baseTitle;
-  } else {
-    document.title = `${to.meta.title} ${baseTitle}`;
-  }
+  document.title = `${to.meta.title} ${baseTitle}`;
 });
 
 export default router;

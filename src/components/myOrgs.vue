@@ -17,8 +17,14 @@
               <p class="card-text">{{ Org.description }}</p>
             </div>
             <div class="card-footer">
-              <a href="#" class="btn btn-primary card-link">Card link</a>
-              <a href="#" class="btn btn-danger card-link">Another link</a><br />
+              <a
+                :href="`http://github.com/${Org.login}`"
+                class="btn btn-primary card-link"
+                target="_blank"
+                >GitHub</a
+              >
+              <a :href="`/Projects/${Org.login}`" class="btn btn-danger card-link">Projects</a
+              ><br />
               <small class="text-muted">Last updated: {{ Org.updated_at }}</small>
             </div>
           </div>
