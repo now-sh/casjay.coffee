@@ -13,5 +13,5 @@ import myOrg from '@/components/Projects.vue'; // @ is an alias to /src
     myOrg,
   },
 })
-export default class myOrg extends Vue {}
+export default class Projects extends Vue {}
 </script>

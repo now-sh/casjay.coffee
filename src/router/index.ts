@@ -3,7 +3,7 @@ import { createRouter, createWebHistory, Router, RouteRecordRaw } from 'vue-rout
 import Home from '@/views/Home.vue';
 import About from '@/views/About.vue';
 import Orgs from '@/views/Orgs.vue';
-import Projects from '@/components/Projects.vue';
+import Projects from '@/views/Projects.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
