@@ -40,8 +40,8 @@ const router: Router = createRouter({
 });
 
 router.afterEach((to) => {
-  const baseTitle = '';
-  document.title = `${to.meta.title} ${baseTitle}`;
+  const baseTitle = 'Coffee! |';
+  document.title = `${baseTitle} ${to.meta.title}`;
 });
 
 export default router;
