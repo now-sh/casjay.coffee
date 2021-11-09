@@ -1,6 +1,6 @@
 <template>
   <div class="orgs">
-    <div v-if="isLoading == true">
+    <div v-if="setOrgs == '' || isLoading == true">
       <spinner />
     </div>
     <div v-else>
