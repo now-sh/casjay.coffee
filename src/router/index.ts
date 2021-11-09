@@ -20,7 +20,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     component: Projects,
-    path: '/orgs/:id',
+    path: '/project/:id',
     name: 'Projects',
     meta: { title: 'Organization' },
   },
