@@ -9,13 +9,14 @@
         <div v-for="Org in setOrgs" v-bind:key="Org.id">
           <div class="col h-100">
             <div class="card border-danger h-100 mb-3">
-              <img
-                width="72"
-                height="72"
-                class="card-img-top img-thumbnail rounded"
-                :src="`${Org.avatar_url}`"
-                alt="{{Org.login}}"
-              />
+              <a :href="`/project/${Org.login}`">
+                <img
+                  class="card-img-top img-thumbnail rounded"
+                  width="72"
+                  height="72"
+                  :src="`${Org.avatar_url}`"
+                  alt="{{Org.login}}"
+              /></a>
               <div class="card-body">
                 <h5 class="card-title">{{ Org.login }}</h5>
                 <p class="card-text">{{ Org.description }}</p>

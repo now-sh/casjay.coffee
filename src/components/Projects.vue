@@ -4,11 +4,12 @@
       <spinner />
     </div>
     <div v-else>
+      <h1></h1>
       <div class="h-100 row row-cols-2 mb-4 mt-3">
         <!--<div class="card-group"> --->
         <div v-for="Org in setProjects" v-bind:key="Org.id">
           <div class="col h-100">
-            <div class="card border-danger h-100 mb-3">
+            <div class="card border-danger h-100">
               <div class="card-body">
                 <h2 class="card-title">{{ Org.name }}</h2>
                 <p class="card-text">{{ Org.description }}</p>
