@@ -1,5 +1,5 @@
 <template>
-  <div class="orgs">
+  <div class="home">
     <div v-if="setOrgs == '' || isLoading == true">
       <spinner />
     </div>

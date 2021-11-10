@@ -1,8 +1,13 @@
 <template>
   <div id="nav" class="nav d-flex justify-content-center mx-5">
-    <router-link to="/" style="width: 100px" class="text-left justify-content-between"
+    <router-link
+      to="/"
+      type="button"
+      style="width: 100px"
+      class="text-left justify-content-between btn-lg btn-outline-danger"
       ><img src="/logo.png" height="64" width="64" alt="Home" />
     </router-link>
+    <router-link to="/" type="button" class="btn-lg btn-outline-info"> Home </router-link>
     <router-link to="/orgs" type="button" class="btn-lg btn-outline-info">
       Organizations
     </router-link>
