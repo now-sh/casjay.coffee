@@ -84,14 +84,14 @@
           </div>
           <div v-else>
             <span v-for="[name, url, display] in setContact.chat" v-bind:key="`${name}`">
-              {{ display }}: <a :href="`http://${url}`">{{ name }}</a>
+              <a :href="`http://${url}`">{{ name }} </a> : {{ display }}
               <br />
             </span>
           </div>
         </div>
         <div>
           <h2 class="text-danger">Public and Social links:</h2>
-          <div v-if="setContact.sociala == null">
+          <div v-if="setContact.social == null">
             <h3 class="text-primary">Problem loading data</h3>
             <spinner />
             <br />
