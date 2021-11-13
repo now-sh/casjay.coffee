@@ -18,33 +18,6 @@
     <!-- Begin Footer -->
     <div class="footer-custom" align="center">
       <br />
-      <!-- Social Links -->
-      <div class="share-buttons" align="center">
-        <a href="/rss.xml%20"
-          ><img alt="RSS Feed" src="https://static.casjay.net/default-icons/social/rss-48x48.png" />
-        </a>
-        <a href="https://github.com/casjay" target="_blank" title="Github">
-          <img alt="Tweet" src="https://static.casjay.net/default-icons/social/github-48x48.png" />
-        </a>
-        <br />
-        <br />
-        <!-- ShareThis BEGIN -->
-        <div
-          class="container"
-          style="width: 20%; rows: 2; margin: 0 auto; columns: auto; text-align: center"
-          align="center"
-        >
-          <div class="sharethis-inline-share-buttons"></div>
-          <script
-            type="text/javascript"
-            src="https://platform-api.sharethis.com/js/sharethis.js#property=5acc08103368f4001495b647&amp;product=inline-share-buttons"
-            async="async"
-          ></script>
-        </div>
-        <!-- ShareThis END -->
-      </div>
-      <br />
-      <!-- End Social Links-->
       <!-- Begin Casjays Developments Footer -->
       Copyright 1999 - 2021
       <br />
@@ -81,7 +54,6 @@
       <br />
       <!-- End Casjays Developments Footer -->
       <!-- Begin theme Code -->
-      <!-- Theme powered -->
       <div class="text-center" style="color: royalblue">
         <br />
         Made with 💜💜💜💜💜💜 by <br />
@@ -93,74 +65,6 @@
       </div>
       <br />
       <!-- End Theme powered -->
-      <!-- End theme Code -->
-      <!-- Begin last updated -->
-      <span style="color: skyblue"> Last update on: August 28, 2021 at 16:52 </span>
-      <!-- End last updated -->
-      <!--Begin Statcounter Code -->
-      <!-- End Statcounter Code -->
-      <!-- Begin Google Track -->
-      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-936146-1"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-          dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-        gtag('config', 'UA-936146-1');
-      </script>
-      <!-- Eng Google Track -->
-      <!--Begin ads Code -->
-      <br />
-      <!-- End ads Code -->
-      <!-- Begin EU compliant -->
-      <link
-        rel="stylesheet"
-        type="text/css"
-        href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css"
-      />
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
-      <script>
-        window.addEventListener('load', function () {
-          window.cookieconsent.initialise({
-            palette: {
-              popup: {
-                background: '#64386b',
-                text: '#ffcdfd',
-              },
-              button: {
-                background: 'transparent',
-                text: '#f8a8ff',
-                border: '#f8a8ff',
-              },
-            },
-            content: {
-              message: 'In accordance with the EU GDPR law this message is being displayed. - ',
-              dismiss: 'I Agree',
-              link: 'CasjaysDev Policy',
-              href: 'https://casjaysdev.com/policy/',
-            },
-            type: 'opt-out',
-          });
-        });
-      </script>
-      <br />
-      <!-- End EU compliant -->
-      <!-- Begin WidgetBot Code -->
-      <!-- discord widget -->
-      <script src="https://cdn.jsdelivr.net/npm/@widgetbot/crate@3" async defer>
-        new Crate({
-          server: '430838999876108289',
-          channel: '430838999876108291',
-          location: ['bottom', 'left'],
-        })
-        crate.notify(
-        )
-      </script>
-      <!-- end discord widget -->
-      <!-- End WidgetBot Code -->
-      <!-- Start of Rocket.Chat Livechat Script -->
-      <!-- End of Rocket.Chat Livechat Script -->
     </div>
     <br />
     <br />
