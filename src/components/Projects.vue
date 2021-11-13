@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div v-if="setProjects == '' || isLoading == true">
-      <spinner />
+      <spinner msgSpinner="Loading data from the API" />
     </div>
     <div v-else>
       <h1></h1>
@@ -46,6 +46,7 @@ import Spinner from '@/loaders/spinner.vue';
 @Options({
   props: {
     msg: String,
+    msgSpinner: { type: String },
   },
   components: { Spinner },
   computed: {},

@@ -34,13 +34,6 @@
           </span>
           <br />
         </div>
-        <div>
-          <h2>social Links</h2>
-          <span v-for="[name, url] in setProfile.social" v-bind:key="`${name}`">
-            <a :href="`http://${url}`">{{ name }}</a>
-            <br />
-          </span>
-        </div>
       </div>
     </div>
   </div>
@@ -54,6 +47,7 @@ import Spinner from '@/loaders/spinner.vue';
 @Options({
   props: {
     msg: String,
+    msgSpinner: { type: String },
   },
   components: { Spinner },
   computed: {},

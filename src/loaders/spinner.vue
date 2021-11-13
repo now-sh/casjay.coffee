@@ -1,5 +1,10 @@
 <template>
-  <h2>Loading data from the API</h2>
+  <div v-if="msgSpinner !== null || msgSpinner !== ''">
+    <h2>{{ msgSpinner }}</h2>
+  </div>
+  <div v-else>
+    <h2>Loading data from the API</h2>
+  </div>
   <svg
     viewBox="0 0 38 38"
     xmlns="http://www.w3.org/2000/svg"
@@ -31,6 +36,8 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   name: 'spinner',
   props: {
+    msg: { type: String },
+    msgSpinner: { type: String },
     loading: { type: Boolean },
     color: {
       type: String,

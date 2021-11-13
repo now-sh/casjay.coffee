@@ -17,7 +17,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     component: Contact,
-    path: '/',
+    path: '/Contact',
     name: 'Contact',
     meta: { title: 'Contact' },
   },
