@@ -11,10 +11,13 @@
     <router-link to="/orgs" type="button" class="btn-lg btn-outline-info">
       Organizations
     </router-link>
+    <router-link to="/Contact" type="button" class="btn-lg btn-outline-info"> Contact </router-link>
     <router-link to="/about" type="button" class="btn-lg btn-outline-info"> About </router-link>
   </div>
   <router-view />
-  <div class="footer footer-custom col-sm-12">
+  <br /><br /><br />
+  <hr />
+  <div class="footer col-sm-12">
     <!-- Begin Footer -->
     <div class="footer-custom" align="center">
       <br />
@@ -70,7 +73,7 @@
     <br />
     <!-- End Footer -->
   </div>
-  <br /><br /><br /><br /><br /><br /><br />
+  <br /><br /><br /><br />
 </template>
 
 <style>

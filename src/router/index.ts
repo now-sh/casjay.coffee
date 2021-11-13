@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory, Router, RouteRecordRaw } from 'vue-router';
 
 import Home from '@/views/Home.vue';
+import Contact from '@/views/Contact.vue';
 import About from '@/views/About.vue';
 import Orgs from '@/views/Orgs.vue';
 import Projects from '@/views/Projects.vue';
@@ -13,6 +14,12 @@ const routes: Array<RouteRecordRaw> = [
     path: '/',
     name: 'Home',
     meta: { title: 'Home' },
+  },
+  {
+    component: Contact,
+    path: '/',
+    name: 'Contact',
+    meta: { title: 'Contact' },
   },
   {
     component: Orgs,
