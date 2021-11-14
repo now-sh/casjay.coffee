@@ -5,7 +5,7 @@
     </div>
     <div v-else>
       <h1></h1>
-      <div class="h-100 row row-cols-2 mb-4 mt-3">
+      <div class="h-100 row row-cols-lg-3 mb-4">
         <!--<div class="card-group"> --->
         <div v-for="Org in setProjects" v-bind:key="Org.id">
           <div class="col h-100">

@@ -4,18 +4,13 @@
       <spinner msgSpinner="Loading data from the API" />
     </div>
     <div v-else>
-      <div class="h-100 row row-cols-3 mb-4">
+      <div class="h-100 row row-cols-lg-3 mb-4">
         <!--<div class="card-group"> --->
         <div v-for="Org in setOrgs" v-bind:key="Org.id">
           <div class="col h-100">
             <div class="card border-danger h-100 mb-3">
               <a :href="`/project/${Org.login}`">
-                <img
-                  class="card-img-top img-thumbnail rounded"
-                  width="72"
-                  height="72"
-                  :src="`${Org.avatar_url}`"
-                  alt="{{Org.login}}"
+                <img class="card-img-top rounded" :src="`${Org.avatar_url}`" alt="{{Org.login}}"
               /></a>
               <div class="card-body">
                 <h5 class="card-title">{{ Org.login }}</h5>
@@ -74,3 +69,10 @@ import Spinner from '@/loaders/spinner.vue';
 })
 export default class myOrgs extends Vue {}
 </script>
+
+<style scoped>
+.card-img-top {
+  max-width: 150px !important;
+  max-height: 150px !important;
+}
+</style>
