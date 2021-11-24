@@ -1,9 +1,10 @@
 <template>
   <div class="home">
     <h1>About site</h1>
-    This site along with all subdomains of casjay.coffee is<br />
+    This site along with allother <br />
+    subdomains of casjay.coffee is<br />
     hosted on <a href="http://vercel.com">vercel.com</a><br />
-    All source code is hosted on github<a href="http://github.com/now-sh">/now-sh</a>
+    All source code is hosted on github at <a href="http://github.com/now-sh">now-sh</a>
   </div>
   <div>
     <br />
@@ -11,7 +12,7 @@
     <a href="http://lorem.casjay.coffee">lorem ipsum generator</a> |
     <a href="http://quotes.casjay.coffee">Random quote generator</a> <br />
     <a href="http://covid.casjay.coffee">Covid-19 Stats </a> |
-    <a href="http://nys.covid.casjay.coffee">Covid-19 Stats for New York </a> |
+    <a href="http://nys.covid.casjay.coffee">Covid-19 Stats for New York </a> <br />
     <a href="http://location.covid.casjay.coffee">Covid-19 data based on location </a>
 
     <br />

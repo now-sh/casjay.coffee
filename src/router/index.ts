@@ -5,6 +5,7 @@ import Contact from '@/views/Contact.vue';
 import About from '@/views/About.vue';
 import Orgs from '@/views/Orgs.vue';
 import Projects from '@/views/Projects.vue';
+import Resume from '@/views/Resume.vue';
 
 const routes: Array<RouteRecordRaw> = [
   { path: '/404', component: Home },
@@ -38,6 +39,12 @@ const routes: Array<RouteRecordRaw> = [
     path: '/about',
     name: 'About',
     meta: { title: 'About' },
+  },
+  {
+    component: Resume,
+    path: '/Resume',
+    name: 'Resume',
+    meta: { title: 'Resume' },
   },
 ];
 
