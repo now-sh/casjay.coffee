@@ -20,7 +20,7 @@
         </div>
         <h2>Email:</h2>
         <div>
-          <span v-for="email in setProfile.Email" v-bind:key="email">
+          <span v-for="email in setProfile.email" v-bind:key="email">
             <a :href="`mailto:${email}`">{{ email }}</a>
             <br />
           </span>

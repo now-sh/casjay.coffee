@@ -3,16 +3,34 @@
     <router-link
       to="/"
       type="button"
-      style="width: 100px"
-      class="text-left justify-content-between btn-lg btn-outline-danger"
+      style="width: 100px; color: #ffffff"
+      class="m-2 text-left justify-content-between btn btn-outline-danger"
       ><img src="/logo.png" height="64" width="64" alt="Home" />
     </router-link>
-    <router-link to="/" type="button" class="btn-lg btn-outline-info"> Home </router-link>
-    <router-link to="/orgs" type="button" class="btn-lg btn-outline-info">
+    <router-link
+      to="/orgs"
+      type="button"
+      style="color: #ffffff"
+      class="m-1 btn btn-info btn-outline-info btn-outline-success"
+    >
       Organizations
     </router-link>
-    <router-link to="/Contact" type="button" class="btn-lg btn-outline-info"> Contact </router-link>
-    <router-link to="/about" type="button" class="btn-lg btn-outline-info"> About </router-link>
+    <router-link
+      to="/Contact"
+      type="button"
+      style="color: #ffffff"
+      class="m-1 btn btn btn-info btn-outline-info btn-outline-success"
+    >
+      Contact
+    </router-link>
+    <router-link
+      to="/about"
+      type="button"
+      style="color: #ffffff"
+      class="m-1 btn btn-info btn-outline-info btn-outline-success"
+    >
+      About
+    </router-link>
   </div>
   <router-view />
   <br /><br /><br />

@@ -4,11 +4,11 @@
       <spinner msgSpinner="Loading data from the API" />
     </div>
     <div v-else>
-      <div class="h-100 row row-cols-lg-3 mb-4">
+      <div class="h-100 row row-cols-3 justify-content-center">
         <!--<div class="card-group"> --->
         <div v-for="Org in setOrgs" v-bind:key="Org.id">
-          <div class="col h-100">
-            <div class="card border-danger h-100 mb-3">
+          <div class="col h-100 p-2">
+            <div class="card border-danger h-100">
               <a :href="`/project/${Org.login}`">
                 <img class="card-img-top rounded" :src="`${Org.avatar_url}`" alt="{{Org.login}}"
               /></a>
