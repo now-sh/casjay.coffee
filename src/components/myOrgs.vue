@@ -4,7 +4,7 @@
       <spinner msgSpinner="Loading data from the API" />
     </div>
     <div v-else>
-      <div class="h-100 row row-cols-3 justify-content-center">
+      <div class="h-100 row row-cols-md-3 justify-content-center">
         <!--<div class="card-group"> --->
         <div v-for="Org in setOrgs" v-bind:key="Org.id">
           <div class="col h-100 p-2">
