@@ -57,7 +57,6 @@ import Spinner from '@/loaders/spinner.vue';
         if (!this.setResume) {
           this.isLoading = true;
         }
-        console.log(response);
       });
     this.isLoading = false;
   },
