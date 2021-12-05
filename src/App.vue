@@ -8,12 +8,12 @@
       ><img src="/logo.png" height="64" width="64" alt="Home" />
     </router-link>
     <router-link
-      to="/orgs"
+      to="/Projects"
       type="button"
       style="color: #ffffff"
       class="m-1 btn btn-info btn-outline-info btn-outline-success"
     >
-      Organizations
+      Projects
     </router-link>
     <router-link
       to="/Contact"

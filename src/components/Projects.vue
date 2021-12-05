@@ -4,7 +4,9 @@
       <spinner msgSpinner="Loading data from the API" />
     </div>
     <div v-else>
-      <h1></h1>
+      <h1>
+        <a :href="`http://github.com/${orgName}`">{{ orgName }}</a>
+      </h1>
       <div class="h-100 row row-cols-md-3 justify-content-center">
         <!--<div class="card-group"> --->
         <div v-for="Org in setProjects" v-bind:key="Org.id">
@@ -25,9 +27,9 @@
                 <br /><br />
                 <a
                   :href="`http://github.com/${Org.full_name}`"
-                  class="btn btn-primary card-link"
+                  class="btn btn-danger btn-outline-success card-link"
                   target="_blank"
-                  >GitHub</a
+                  >View github repo</a
                 ><br />
               </div>
             </div>
@@ -59,6 +61,7 @@ import Spinner from '@/loaders/spinner.vue';
     return {
       isLoading: true,
       setProjects: [],
+      orgName: this.$route.params.id,
     };
   },
   mounted() {

@@ -9,8 +9,6 @@ import Resume from '@/views/Resume.vue';
 import Domains from '@/views/Domains.vue';
 
 const routes: Array<RouteRecordRaw> = [
-  { path: '/404', component: Home },
-
   {
     component: Home,
     path: '/',
@@ -31,15 +29,16 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     component: Orgs,
-    path: '/orgs',
-    name: 'Organizations',
-    meta: { title: 'Organizations' },
+    path: '/Projects',
+    name: 'Projects',
+    meta: { title: 'Projects' },
   },
   {
     component: Projects,
-    path: '/project/:id',
-    name: 'Projects',
-    meta: { title: 'Projects' },
+    path: '/Projects/:id',
+    name: 'Project',
+    meta: { title: 'Project' },
+    props: true,
   },
   {
     component: About,
@@ -53,6 +52,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Resume',
     meta: { title: 'Resume' },
   },
+  { component: Home, path: '/404', name: '' },
 ];
 
 const router: Router = createRouter({

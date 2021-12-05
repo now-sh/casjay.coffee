@@ -9,7 +9,7 @@
         <div v-for="Org in setOrgs" v-bind:key="Org.id">
           <div class="col h-100 p-2">
             <div class="card border-danger h-100">
-              <a :href="`/project/${Org.login}`">
+              <a :href="`/Projects/${Org.login}`">
                 <img class="card-img-top rounded" :src="`${Org.avatar_url}`" alt="{{Org.login}}"
               /></a>
               <div class="card-body">
@@ -17,13 +17,8 @@
                 <p class="card-text">{{ Org.description }}</p>
               </div>
               <div class="card-footer">
-                <a
-                  :href="`http://github.com/${Org.login}`"
-                  class="btn btn-primary card-link"
-                  target="_blank"
-                  >GitHub</a
-                >
-                <a :href="`/project/${Org.login}`" class="btn btn-danger card-link">Projects</a
+                <a :href="`/Projects/${Org.login}`" class="btn btn-danger card-link"
+                  >Show all Repos</a
                 ><br />
               </div>
             </div>

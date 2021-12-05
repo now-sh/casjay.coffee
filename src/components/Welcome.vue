@@ -10,14 +10,6 @@
           <p>{{ setProfile.bio }}</p>
           <br />
         </div>
-        <div>
-          <h2>Sponsor:</h2>
-          <span class="m-5" v-for="[name, url] in setProfile.sponsor" v-bind:key="name">
-            <a :href="`${url}`"> {{ name }} </a>
-          </span>
-          <br />
-          <br />
-        </div>
         <h2>Email:</h2>
         <div>
           <span v-for="email in setProfile.email" v-bind:key="email">
@@ -29,9 +21,17 @@
         <div>
           <h2>Verify</h2>
           <span v-for="[name, url] in setProfile.verify" v-bind:key="`${name}`">
-            <a :href="`http://${url}`">{{ name }}</a>
-            <br />
+            <a :href="`http://${url}`" class="p-3"> {{ name }} </a>
           </span>
+          <br />
+          <br />
+        </div>
+        <div>
+          <h2>Sponsor:</h2>
+          <span class="m-5" v-for="[name, url] in setProfile.sponsor" v-bind:key="name">
+            <a :href="`${url}`"> {{ name }} </a>
+          </span>
+          <br />
           <br />
         </div>
       </div>
