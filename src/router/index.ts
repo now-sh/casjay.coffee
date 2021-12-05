@@ -7,6 +7,7 @@ import Orgs from '@/views/Orgs.vue';
 import Projects from '@/views/Projects.vue';
 import Resume from '@/views/Resume.vue';
 import Domains from '@/views/Domains.vue';
+import NotFound from '@/views/404.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -52,7 +53,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Resume',
     meta: { title: 'Resume' },
   },
-  { component: Home, path: '/404', name: '' },
+  { component: NotFound, path: '/error/404' },
+  {
+    path: '/:catchAll(.*)',
+    redirect: '/error/404',
+  },
 ];
 
 const router: Router = createRouter({
