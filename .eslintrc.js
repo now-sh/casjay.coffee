@@ -9,6 +9,7 @@ module.exports = {
   },
   rules: {
     eqeqeq: 'off',
+    'import/no-unresolved': 'off',
     'no-unused-vars': 'warn',
     'no-console': 'off',
     'func-names': 'off',

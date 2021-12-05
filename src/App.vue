@@ -32,6 +32,14 @@
       About
     </router-link>
     <router-link
+      to="/Domains"
+      type="button"
+      style="color: #ffffff"
+      class="m-1 btn btn-info btn-outline-info btn-outline-success"
+    >
+      Domains
+    </router-link>
+    <router-link
       to="/Resume"
       type="button"
       style="color: #ffffff"

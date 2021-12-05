@@ -6,6 +6,7 @@ import About from '@/views/About.vue';
 import Orgs from '@/views/Orgs.vue';
 import Projects from '@/views/Projects.vue';
 import Resume from '@/views/Resume.vue';
+import Domains from '@/views/Domains.vue';
 
 const routes: Array<RouteRecordRaw> = [
   { path: '/404', component: Home },
@@ -15,6 +16,12 @@ const routes: Array<RouteRecordRaw> = [
     path: '/',
     name: 'Home',
     meta: { title: 'Home' },
+  },
+  {
+    component: Domains,
+    path: '/Domains',
+    name: 'Domains',
+    meta: { title: 'Domains' },
   },
   {
     component: Contact,
