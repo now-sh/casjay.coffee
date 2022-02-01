@@ -76,3 +76,5 @@ yarn-error.log
 *.sw?
 
 .vercel
+# ignore commit message
+.gitcommit
