@@ -56,10 +56,10 @@
     <div class="footer-custom" align="center">
       <br />
       <!-- Begin Casjays Developments Footer -->
-      Copyright 1999 - 2021
+
       <br />
       <a href="https://casjay.net" target="_blank">Casjays Developments</a> and
-      <a href="https://jason.malaks.us" target="_blank">Jason M. Hempstead-Malak</a><br />
+      <a href="https://malaks-us.github.io/jason" target="_blank">Jason M. Hempstead-Malak</a><br />
       Hosting by
       <a href="https://casjay.net/hosting" target="_blank">Casjays Developments: Hosting</a><br />
       and powered by <a href="https://casjaysdev.com" target="_blank">CasjaysDev.com</a>
