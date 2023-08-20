@@ -62,7 +62,7 @@
       <a href="https://malaks-us.github.io/jason" target="_blank">Jason M. Hempstead-Malak</a><br />
       Hosting by
       <a href="https://casjay.pro/hosting" target="_blank">Casjays Developments: Hosting</a><br />
-      and powered by <a href="https://casjaysdev.pro" target="_blank">CasjaysDev.com</a>
+      and powered by <a href="https://casjaysdev.pro" target="_blank">CasjaysDev</a>
       <br />
       <br />
       <a href="https://www.patreon.com/casjay" target="_blank"
