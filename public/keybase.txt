@@ -1,0 +1,62 @@
+==================================================================
+https://keybase.io/casjay
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://casjay.coffee
+  * I am casjay (https://keybase.io/casjay) on keybase.
+  * I have a public key with fingerprint B1DF 4B06 7C9E F00C 33A1  F73D 1AB3 09F4 2A76 4145
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "01164a98b775bdf3c644d70d40b6ee85c34f106013a389fcc07626ce13268260947e0a",
+      "fingerprint": "b1df4b067c9ef00c33a1f73d1ab309f42a764145",
+      "host": "keybase.io",
+      "key_id": "1ab309f42a764145",
+      "kid": "01164a98b775bdf3c644d70d40b6ee85c34f106013a389fcc07626ce13268260947e0a",
+      "uid": "7e6362e006067364c73aea3200534100",
+      "username": "casjay"
+    },
+    "service": {
+      "hostname": "casjay.coffee",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1692514666,
+  "expire_in": 157680000,
+  "prev": "35e2143acd9b3f612bf7ea8097673658b1f6922067a774c7ec05b55cd3ef7bab",
+  "seqno": 82,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+
+owGtUr9rFEEY3egZkqBEEK6IiDiFaDzizM7szO6BoIKFXGljIR7z45vLmLh72d1c
+PJNgJ4KNiIWVIME/IKRKaycBKxstjD8KES0sFK3EmWAKIaXTDPN977157+N7cGh/
+NNac2hj/Pj24cGlk67OKzPvNhWWkCjNE7WU0BzsXzBuo6u6cM6iNMCGcySxVQiTK
+WKo5Y0Zgw7DiAGmiKbMEc0yopGlmtcaCx1wDoTFPY44zJgBL1ELW5T0o+6XLay+r
+iLFMYS50BhZjTakkVlBDpKI4syyWgjPCEk+cLarA8OaUrGDGFb7mH90de3vg/7Pv
+xR05AZzyGLBncEE504JKkDTGOKGMYByAFZS5vAkerWV1Qw7Ragv52sBpCGMNOf7p
+z+jCWgBP7ZdFXehi3rdm67pftQO1HvYDdglU969KV7nc+DF6xgDKyhU5ahOP1LUL
+soRncUIY57yF4FbfldB1AZEInmJ/wj8w8JI0gZgwKq9qkylqOYmVFSBTnIkQLkkV
+sV4r9lGlED4raJyoJNGGghVKKhSCLeQFaqexNyp7XrRyvVzWiyWg1Yl7dSNqjkXH
+mica69ud0ZUn3w7Spz/P7a7egX1h76KJ8cO7ldHL0a+7W3TuZJMed18/Tm6ePdNJ
+O9Plnalrk/dPXf/y+7QZiZ4dWXv1Wlz59PDi2st35x8Pfrx9vv1ofX1l6fabFxtH
+PzT+AA==
+=xQI7
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/casjay
+
+==================================================================
