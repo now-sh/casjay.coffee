@@ -56,7 +56,7 @@
     <div class="footer-custom" align="center">
       <br />
       <!-- Begin Casjays Developments Footer -->
-      Copyright 1999 - 2023
+      Copyright 1999 - 2024
       <br />
       <a href="https://casjay.pro" target="_blank">Casjays Developments</a> and
       <a href="https://malaks-us.github.io/jason" target="_blank">Jason M. Hempstead-Malak</a><br />
