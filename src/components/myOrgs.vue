@@ -53,7 +53,7 @@ import Spinner from '@/loaders/spinner.vue';
     };
   },
   mounted() {
-    axios.get('https://api.casjay.vercel.app/api/v1/git/orgs/casjay').then((response) => {
+    axios.get('https://api.casjay.coffee/api/v1/git/orgs/casjay').then((response) => {
       this.setOrgs = response.data;
       if (!this.setOrgs) {
         this.isLoading = true;
