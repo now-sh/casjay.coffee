@@ -65,7 +65,7 @@ import Spinner from '@/loaders/spinner.vue';
     };
   },
   mounted() {
-    const api = `https://api.casjay.vercel.app/api/v1/git/repos/${this.$route.params.id}`;
+    const api = `https://api.casjay.coffee/api/v1/git/repos/${this.$route.params.id}`;
     axios.get(api).then((response) => {
       this.setProjects = response.data;
       if (!this.setProjects) {
