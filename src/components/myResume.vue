@@ -8,11 +8,7 @@
         <div class="row justify-content-center">
           <div class="col-9">
             <vue-pdf-embed :source="setResume" class="" />
-            <a
-              href="https://raw.githubusercontent.com/casjay/casjay/main/Resume-Tech.pdf"
-              class="h2"
-              >Resume can be found here</a
-            >
+            <a href="https://raw.githubusercontent.com/casjay/casjay/main/Resume-Tech.pdf" class="h2">Resume can be found here</a>
           </div>
         </div>
       </div>
@@ -45,19 +41,15 @@ import Spinner from '@/loaders/spinner.vue';
     };
   },
   mounted() {
-    axios
-      .get('https://raw.githubusercontent.com/casjay/casjay/main/Resume-Tech.pdf', {
-        timeout: 2000,
-        responseType: 'blob',
-      })
-      .then((response) => {
-        const blob = new Blob([response.data]);
-        const objectUrl = URL.createObjectURL(blob);
-        this.setResume = objectUrl;
-        if (!this.setResume) {
-          this.isLoading = true;
-        }
-      });
+    const resumeUrl = 'https://raw.githubusercontent.com/casjay/casjay/main/Resume-Tech.pdf';
+    axios.get(resumeUrl, { timeout: 2000, responseType: 'blob' }).then((response) => {
+      const blob = new Blob([response.data]);
+      const objectUrl = URL.createObjectURL(blob);
+      this.setResume = objectUrl;
+      if (!this.setResume) {
+        this.isLoading = true;
+      }
+    });
     this.isLoading = false;
   },
 })
