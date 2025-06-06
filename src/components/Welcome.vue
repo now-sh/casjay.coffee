@@ -63,14 +63,13 @@ import Spinner from '@/loaders/spinner.vue';
     };
   },
   mounted() {
-    axios
-      .get('https://raw.githubusercontent.com/casjay/casjay/main/profile.json')
-      .then((response) => {
-        this.setProfile = response.data;
-        if (!this.setProfile) {
-          this.isLoading = true;
-        }
-      });
+    const profileJson = 'https://raw.githubusercontent.com/casjay/casjay/main/profile.json';
+    axios.get(profileJson, { timeout: 2000 }).then((response) => {
+      this.setProfile = response.data;
+      if (!this.setProfile) {
+        this.isLoading = true;
+      }
+    });
     this.isLoading = false;
   },
 })
