@@ -8,10 +8,8 @@
         <div class="text-center">
           <h2 class="text-danger">This is an ever growing list</h2>
           <p>
-            I go by the username casjay I have been using that username since I created my first
-            account on yahoo in 1997.. <br />
-            Other usernames include chmweb and casjaysdev. I try to sign every commit so it can be
-            verified
+            I go by the username casjay I have been using that username since I created my first account on yahoo in 1997.. <br />
+            Other usernames include chmweb and casjaysdev. I try to sign every commit so it can be verified
           </p>
           <br />
           <h2 class="text-danger">Personal websites:</h2>
@@ -133,14 +131,13 @@ import Spinner from '@/loaders/spinner.vue';
     };
   },
   mounted() {
-    axios
-      .get('https://raw.githubusercontent.com/casjay/casjay/main/profile.json')
-      .then((response) => {
-        this.setContact = response.data;
-        if (!this.setContact) {
-          this.isLoading = true;
-        }
-      });
+    const profileJson = 'https://raw.githubusercontent.com/casjay/casjay/main/profile.json';
+    axios.get(profileJson, { timeout: 2000 }).then((response) => {
+      this.setContact = response.data;
+      if (!this.setContact) {
+        this.isLoading = true;
+      }
+    });
     this.isLoading = false;
   },
 })
