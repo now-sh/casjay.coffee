@@ -72,14 +72,13 @@ import Spinner from '@/loaders/spinner.vue';
     };
   },
   mounted() {
-    axios
-      .get('https://raw.githubusercontent.com/casjay/casjay/refs/heads/main/domains.json')
-      .then((response) => {
-        this.setDomains = response.data;
-        if (!this.setDomains) {
-          this.isLoading = true;
-        }
-      });
+    const domainsJson = 'https://raw.githubusercontent.com/casjay/casjay/refs/heads/main/domains.json';
+    axios.get(domainsJson, { timeout: 2000 }).then((response) => {
+      this.setDomains = response.data;
+      if (!this.setDomains) {
+        this.isLoading = true;
+      }
+    });
     this.isLoading = false;
   },
 })
