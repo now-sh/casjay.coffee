@@ -24,6 +24,27 @@
         </div>
       </div>
     </div>
+    <div class="row text-center">
+      <div class="col-md-6 offset-md-3">
+        <div class="text-center">
+          <h2 class="text-danger">My Servers:</h2>
+          <div v-if="setDomains == null">
+            <h3 class="text-primary">Problem loading data</h3>
+            <spinner />
+            <br />
+          </div>
+          <div v-else>
+            <div>
+              <span class="m-5" v-for="host in setDomains.subDomains" v-bind:key="host">
+                <a :href="`http://${host}`" target="_blank"> {{ host }} </a>
+                <br />
+              </span>
+              <br />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="mb-5"></div>
 </template>
@@ -51,14 +72,12 @@ import Spinner from '@/loaders/spinner.vue';
     };
   },
   mounted() {
-    axios
-      .get('https://raw.githubusercontent.com/casjay/casjay/main/domains.json')
-      .then((response) => {
-        this.setDomains = response.data;
-        if (!this.setDomains) {
-          this.isLoading = true;
-        }
-      });
+    axios.get('/domains.json').then((response) => {
+      this.setDomains = response.data;
+      if (!this.setDomains) {
+        this.isLoading = true;
+      }
+    });
     this.isLoading = false;
   },
 })
