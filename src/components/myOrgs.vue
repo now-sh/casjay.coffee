@@ -9,18 +9,12 @@
         <div v-for="Org in setOrgs" v-bind:key="Org.id">
           <div class="col h-100 p-2">
             <div class="card border-danger h-100">
-              <a :href="`/Projects/${Org.login}`">
-                <img class="card-img-top rounded" :src="`${Org.avatar_url}`" alt="{{Org.login}}"
-              /></a>
+              <a :href="`/Projects/${Org.login}`"> <img class="card-img-top rounded" :src="`${Org.avatar_url}`" alt="{{Org.login}}" /></a>
               <div class="card-body">
                 <h5 class="card-title">{{ Org.login }}</h5>
                 <p class="card-text">{{ Org.description }}</p>
               </div>
-              <div class="card-footer">
-                <a :href="`/Projects/${Org.login}`" class="btn btn-danger card-link"
-                  >Show all Repos</a
-                ><br />
-              </div>
+              <div class="card-footer"><a :href="`/Projects/${Org.login}`" class="btn btn-danger card-link">Show all Repos</a><br /></div>
             </div>
           </div>
         </div>
@@ -53,7 +47,8 @@ import Spinner from '@/loaders/spinner.vue';
     };
   },
   mounted() {
-    axios.get('https://api.casjay.coffee/api/v1/git/orgs/casjay').then((response) => {
+    const githubApi = 'https://api.casjay.coffee/api/v1/git/orgs/casjay';
+    axios.get(githubApi, { timeout: 2000 }).then((response) => {
       this.setOrgs = response.data;
       if (!this.setOrgs) {
         this.isLoading = true;
