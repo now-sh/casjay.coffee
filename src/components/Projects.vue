@@ -25,12 +25,7 @@
                   language: {{ Org.language || 'none detected' }}
                 </span>
                 <br /><br />
-                <a
-                  :href="`http://github.com/${Org.full_name}`"
-                  class="btn btn-danger btn-outline-success card-link"
-                  target="_blank"
-                  >View github repo</a
-                ><br />
+                <a :href="`http://github.com/${Org.full_name}`" class="btn btn-danger btn-outline-success card-link" target="_blank">View github repo</a><br />
               </div>
             </div>
           </div>
@@ -65,8 +60,8 @@ import Spinner from '@/loaders/spinner.vue';
     };
   },
   mounted() {
-    const api = `https://api.casjay.coffee/api/v1/git/repos/${this.$route.params.id}`;
-    axios.get(api).then((response) => {
+    const apiUrl = `https://api.casjay.coffee/api/v1/git/repos/${this.$route.params.id}`;
+    axios.get(apiUrl, { timeout: 2000 }).then((response) => {
       this.setProjects = response.data;
       if (!this.setProjects) {
         this.isLoading = true;
