@@ -59,14 +59,30 @@ import Spinner from '@/loaders/spinner.vue';
       orgName: this.$route.params.id,
     };
   },
+<<<<<<< Updated upstream
   mounted() {
     const apiUrl = `https://api.casjay.coffee/api/v1/git/repos/${this.$route.params.id}`;
     axios.get(apiUrl, { timeout: 2000 }).then((response) => {
+=======
+  async mounted() {
+    const api = `https://api.casjay.vercel.app/api/v1/git/repos/${this.$route.params.id}`;
+    try {
+      const response = await axios.get(api, {
+        timeout: 5000,
+      });
+>>>>>>> Stashed changes
       this.setProjects = response.data;
-      if (!this.setProjects) {
-        this.isLoading = true;
+    } catch (error) {
+      console.log('First attempt failed, retrying...');
+      try {
+        const response = await axios.get(api, {
+          timeout: 5000,
+        });
+        this.setProjects = response.data;
+      } catch (retryError) {
+        console.error('Failed after retry:', retryError);
       }
-    });
+    }
     this.isLoading = false;
   },
 })
