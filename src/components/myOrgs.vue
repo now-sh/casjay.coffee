@@ -46,17 +46,12 @@ import Spinner from '@/loaders/spinner.vue';
       setOrgs: [],
     };
   },
-<<<<<<< Updated upstream
-  mounted() {
-    const githubApi = 'https://api.casjay.coffee/api/v1/git/orgs/casjay';
-    axios.get(githubApi, { timeout: 2000 }).then((response) => {
-=======
   async mounted() {
+    await new Promise((resolve) => { setTimeout(resolve, 500); });
     try {
       const response = await axios.get('https://api.casjay.vercel.app/api/v1/git/orgs/casjay', {
         timeout: 5000,
       });
->>>>>>> Stashed changes
       this.setOrgs = response.data;
     } catch (error) {
       console.log('First attempt failed, retrying...');

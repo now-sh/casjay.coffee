@@ -20,7 +20,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'spinner',
+  name: 'CoffeeSpinner',
   props: {
     msg: { type: String },
     msgSpinner: { type: String },
@@ -35,50 +35,51 @@ export default defineComponent({
   flex-direction: column;
   align-items: center;
   padding: 20px;
+  margin-top: 7.5rem;
 }
 
 .coffee-cup {
-  width: 60px;
-  height: 50px;
-  background: linear-gradient(to bottom, #8B4513 0%, #5D2E0C 100%);
-  border-radius: 0 0 30px 30px;
+  width: 120px;
+  height: 100px;
+  background: linear-gradient(to bottom, #D2691E 0%, #A0522D 100%);
+  border-radius: 0 0 60px 60px;
   position: relative;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   animation: wobble 1.5s infinite ease-in-out;
 }
 
 .coffee-liquid {
-  width: 50px;
-  height: 35px;
-  background: linear-gradient(to bottom, #3E2723 0%, #1B0E08 100%);
-  border-radius: 0 0 25px 25px;
+  width: 100px;
+  height: 70px;
+  background: linear-gradient(to bottom, #8B4513 0%, #654321 100%);
+  border-radius: 0 0 50px 50px;
   position: absolute;
-  top: 8px;
-  left: 5px;
+  top: 16px;
+  left: 10px;
   animation: bubble 2s infinite ease-in-out;
 }
 
 .coffee-handle {
-  width: 20px;
-  height: 25px;
-  border: 3px solid #5D2E0C;
+  width: 40px;
+  height: 50px;
+  border: 6px solid #A0522D;
   border-left: none;
-  border-radius: 0 12px 12px 0;
+  border-radius: 0 24px 24px 0;
   position: absolute;
-  right: -18px;
-  top: 8px;
+  right: -36px;
+  top: 16px;
 }
 
 .steam {
   position: absolute;
-  top: -25px;
+  top: -50px;
   left: 50%;
   transform: translateX(-50%);
 }
 
 .steam div {
-  width: 3px;
-  height: 20px;
+  width: 6px;
+  height: 40px;
   background: rgba(255, 255, 255, 0.6);
   border-radius: 50%;
   position: absolute;
@@ -86,7 +87,7 @@ export default defineComponent({
 }
 
 .steam-1 {
-  left: -8px;
+  left: -16px;
   animation-delay: 0s;
 }
 
@@ -96,13 +97,13 @@ export default defineComponent({
 }
 
 .steam-3 {
-  left: 8px;
+  left: 16px;
   animation-delay: 0.6s;
 }
 
 .loading-message h3 {
-  color: #5D2E0C;
-  font-size: 1.2rem;
+  color: #f8f9fa;
+  font-size: 2.4rem;
   margin: 0;
 }
 

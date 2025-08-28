@@ -15,7 +15,10 @@
       "Bash(true)",
       "Bash(git checkout:*)",
       "Bash(git reset:*)",
-      "Bash(git pull:*)"
+      "Bash(git pull:*)",
+      "Bash(mkdir:*)",
+      "WebFetch(domain:cdn.jsdelivr.net)",
+      "Bash(node:*)"
     ],
     "deny": []
   }

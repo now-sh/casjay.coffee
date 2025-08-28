@@ -1,0 +1,209 @@
+/* Mobile-First Enhancements for Casjay.coffee */
+
+/* Base mobile styles (320px+) */
+body {
+  font-size: 16px; /* Ensure minimum touch target size */
+  line-height: 1.6;
+}
+
+/* Navigation improvements */
+#nav {
+  padding: 15px 10px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+#nav .btn {
+  min-height: 44px; /* Touch target minimum */
+  font-size: 14px;
+  padding: 8px 12px;
+  white-space: nowrap;
+}
+
+#nav img {
+  max-width: 40px;
+  max-height: 40px;
+}
+
+/* Cards mobile improvements */
+.card {
+  margin-bottom: 1rem;
+}
+
+.card-img-top {
+  max-width: 100px !important;
+  max-height: 100px !important;
+  margin: 0 auto;
+}
+
+/* Loading spinner mobile positioning */
+.coffee-spinner {
+  margin-top: 3rem;
+}
+
+.loading-message h3 {
+  font-size: 1.5rem;
+}
+
+/* Small mobile phones (320px+) */
+@media (max-width: 575.98px) {
+  #nav {
+    padding: 10px 5px;
+  }
+  
+  #nav .btn {
+    font-size: 12px;
+    padding: 6px 8px;
+    min-width: 60px;
+  }
+  
+  #nav img {
+    max-width: 32px;
+    max-height: 32px;
+  }
+  
+  .container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+  .loading-message h3 {
+    font-size: 1.2rem;
+  }
+  
+  .coffee-spinner {
+    margin-top: 2rem;
+  }
+  
+  .coffee-cup {
+    width: 80px !important;
+    height: 70px !important;
+  }
+  
+  .coffee-liquid {
+    width: 65px !important;
+    height: 50px !important;
+  }
+  
+  .coffee-handle {
+    width: 25px !important;
+    height: 35px !important;
+  }
+}
+
+/* Small tablets and large phones (576px+) */
+@media (min-width: 576px) {
+  #nav {
+    padding: 20px 15px;
+  }
+  
+  #nav .btn {
+    font-size: 15px;
+    padding: 10px 16px;
+  }
+  
+  #nav img {
+    max-width: 50px;
+    max-height: 50px;
+  }
+  
+  .loading-message h3 {
+    font-size: 1.8rem;
+  }
+}
+
+/* Medium tablets (768px+) */
+@media (min-width: 768px) {
+  #nav {
+    padding: 25px 20px;
+  }
+  
+  #nav .btn {
+    font-size: 16px;
+    padding: 12px 20px;
+  }
+  
+  #nav img {
+    max-width: 60px;
+    max-height: 60px;
+  }
+  
+  .coffee-spinner {
+    margin-top: 5rem;
+  }
+  
+  .loading-message h3 {
+    font-size: 2rem;
+  }
+}
+
+/* Large tablets and small desktops (992px+) */
+@media (min-width: 992px) {
+  #nav {
+    padding: 30px;
+  }
+  
+  #nav .btn {
+    font-size: 16px;
+    padding: 12px 24px;
+  }
+  
+  #nav img {
+    max-width: 64px;
+    max-height: 64px;
+  }
+  
+  .coffee-spinner {
+    margin-top: 7.5rem;
+  }
+  
+  .loading-message h3 {
+    font-size: 2.4rem;
+  }
+}
+
+/* Extra large screens (1200px+) */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .coffee-cup,
+  .coffee-liquid,
+  .steam div {
+    animation: none !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .btn {
+    border-width: 2px;
+  }
+  
+  .card {
+    border-width: 2px;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .btn:hover {
+    transform: none;
+  }
+  
+  .card:hover {
+    transform: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .coffee-spinner,
+  #nav {
+    display: none !important;
+  }
+}

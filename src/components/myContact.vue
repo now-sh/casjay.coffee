@@ -130,17 +130,8 @@ import Spinner from '@/loaders/spinner.vue';
       setContact: [],
     };
   },
-<<<<<<< Updated upstream
-  mounted() {
-    const profileJson = 'https://raw.githubusercontent.com/casjay/casjay/main/profile.json';
-    axios.get(profileJson, { timeout: 2000 }).then((response) => {
-      this.setContact = response.data;
-      if (!this.setContact) {
-        this.isLoading = true;
-      }
-    });
-=======
   async mounted() {
+    await new Promise((resolve) => { setTimeout(resolve, 500); });
     try {
       const response = await axios.get('https://raw.githubusercontent.com/casjay/casjay/main/profile.json', {
         timeout: 5000,
@@ -157,7 +148,6 @@ import Spinner from '@/loaders/spinner.vue';
         console.error('Failed after retry:', retryError);
       }
     }
->>>>>>> Stashed changes
     this.isLoading = false;
   },
 })

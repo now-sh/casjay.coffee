@@ -1,4 +1,5 @@
-import 'bootswatch/dist/darkly/bootstrap.min.css';
+import '../public/css/bootstrap-darkly.min.css';
+import '../public/css/mobile-enhancements.css';
 import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
