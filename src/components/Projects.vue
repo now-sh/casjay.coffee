@@ -47,11 +47,7 @@ import Spinner from '@/loaders/spinner.vue';
   },
   components: { Spinner },
   computed: {},
-  methods: {
-    isLoading() {
-      this.isLoading = true;
-    },
-  },
+  methods: {},
   data() {
     return {
       isLoading: true,
@@ -65,22 +61,18 @@ import Spinner from '@/loaders/spinner.vue';
       setTimeout(resolve, 500);
     });
     const api = `https://api.casjay.coffee/api/v1/git/repos/${this.$route.params.id}`;
-    console.log('Projects API URL:', api);
     try {
       const response = await axios.get(api, {
         timeout: 5000,
       });
-      console.log('Projects API Response:', response.data);
-      console.log('Has repos property:', !!response.data.repos);
-      this.setProjects = response.data.repos || response.data;
-      console.log('setProjects after assignment:', this.setProjects.length);
+      this.setProjects = Array.isArray(response.data) ? response.data : (response.data.repos || response.data);
     } catch (error) {
       console.log('First attempt failed, retrying...');
       try {
         const response = await axios.get(api, {
           timeout: 5000,
         });
-        this.setProjects = response.data.repos || response.data;
+        this.setProjects = Array.isArray(response.data) ? response.data : (response.data.repos || response.data);
       } catch (retryError) {
         console.error('Failed after retry:', retryError);
       }

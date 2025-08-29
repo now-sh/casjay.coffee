@@ -35,11 +35,7 @@ import Spinner from '@/loaders/spinner.vue';
   },
   components: { Spinner },
   computed: {},
-  methods: {
-    isLoading() {
-      this.isLoading = true;
-    },
-  },
+  methods: {},
   data() {
     return {
       isLoading: true,
@@ -54,20 +50,14 @@ import Spinner from '@/loaders/spinner.vue';
       const response = await axios.get('https://api.casjay.coffee/api/v1/git/orgs/casjay', {
         timeout: 5000,
       });
-      console.log('API Response:', response.data);
-      console.log('Has orgs property:', !!response.data.orgs);
-      console.log('Orgs length:', response.data.orgs?.length);
-      this.setOrgs = response.data.orgs || response.data;
-      console.log('setOrgs after assignment:', this.setOrgs.length);
+      this.setOrgs = Array.isArray(response.data) ? response.data : (response.data.orgs || response.data);
     } catch (error) {
       console.log('First attempt failed, retrying...');
       try {
         const response = await axios.get('https://api.casjay.coffee/api/v1/git/orgs/casjay', {
           timeout: 5000,
         });
-        console.log('Retry API Response:', response.data);
-        this.setOrgs = response.data.orgs || response.data;
-        console.log('setOrgs after retry assignment:', this.setOrgs.length);
+        this.setOrgs = Array.isArray(response.data) ? response.data : (response.data.orgs || response.data);
       } catch (retryError) {
         console.error('Failed after retry:', retryError);
       }
