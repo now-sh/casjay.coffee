@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <div v-if="setOrgs == '' || isLoading == true">
+    <div v-if="setOrgs.length === 0 || isLoading == true">
       <spinner msgSpinner="Loading data from the API" />
     </div>
     <div v-else>
@@ -9,7 +9,7 @@
         <div v-for="Org in setOrgs" v-bind:key="Org.id">
           <div class="col h-100 p-2">
             <div class="card border-danger h-100">
-              <a :href="`/Projects/${Org.login}`"> <img class="card-img-top rounded" :src="`${Org.avatar_url}`" :alt="Org.login" /></a>
+              <a :href="`/Projects/${Org.login}`"> <img class="card-img-top rounded" :src="Org.avatar_url" :alt="Org.login" /></a>
               <div class="card-body">
                 <h5 class="card-title">{{ Org.login }}</h5>
                 <p class="card-text">{{ Org.description }}</p>
@@ -54,14 +54,20 @@ import Spinner from '@/loaders/spinner.vue';
       const response = await axios.get('https://api.casjay.coffee/api/v1/git/orgs/casjay', {
         timeout: 5000,
       });
+      console.log('API Response:', response.data);
+      console.log('Has orgs property:', !!response.data.orgs);
+      console.log('Orgs length:', response.data.orgs?.length);
       this.setOrgs = response.data.orgs || response.data;
+      console.log('setOrgs after assignment:', this.setOrgs.length);
     } catch (error) {
       console.log('First attempt failed, retrying...');
       try {
         const response = await axios.get('https://api.casjay.coffee/api/v1/git/orgs/casjay', {
           timeout: 5000,
         });
+        console.log('Retry API Response:', response.data);
         this.setOrgs = response.data.orgs || response.data;
+        console.log('setOrgs after retry assignment:', this.setOrgs.length);
       } catch (retryError) {
         console.error('Failed after retry:', retryError);
       }

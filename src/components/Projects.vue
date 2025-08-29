@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <div v-if="setProjects == '' || isLoading == true">
+    <div v-if="setProjects.length === 0 || isLoading == true">
       <spinner msgSpinner="Loading data from the API" />
     </div>
     <div v-else>
@@ -56,19 +56,24 @@ import Spinner from '@/loaders/spinner.vue';
     return {
       isLoading: true,
       setProjects: [],
-      orgName: this.$route.params.id,
+      orgName: '',
     };
   },
   async mounted() {
+    this.orgName = this.$route.params.id;
     await new Promise((resolve) => {
       setTimeout(resolve, 500);
     });
     const api = `https://api.casjay.coffee/api/v1/git/repos/${this.$route.params.id}`;
+    console.log('Projects API URL:', api);
     try {
       const response = await axios.get(api, {
         timeout: 5000,
       });
+      console.log('Projects API Response:', response.data);
+      console.log('Has repos property:', !!response.data.repos);
       this.setProjects = response.data.repos || response.data;
+      console.log('setProjects after assignment:', this.setProjects.length);
     } catch (error) {
       console.log('First attempt failed, retrying...');
       try {
