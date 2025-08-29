@@ -78,8 +78,8 @@ async mounted() {
 ```
 
 ### API Endpoints
-- **Organizations**: `https://api.casjay.vercel.app/api/v1/git/orgs/casjay`
-- **Repositories**: `https://api.casjay.vercel.app/api/v1/git/repos/{orgName}`
+- **Organizations**: `https://api.casjay.coffee/api/v1/git/orgs/casjay`
+- **Repositories**: `https://api.casjay.coffee/api/v1/git/repos/{orgName}`
 - **Profile Data**: `https://raw.githubusercontent.com/casjay/casjay/main/profile.json`
 
 ### File Structure

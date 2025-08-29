@@ -9,7 +9,7 @@
         <div v-for="Org in setOrgs" v-bind:key="Org.id">
           <div class="col h-100 p-2">
             <div class="card border-danger h-100">
-              <a :href="`/Projects/${Org.login}`"> <img class="card-img-top rounded" :src="`${Org.avatar_url}`" alt="{{Org.login}}" /></a>
+              <a :href="`/Projects/${Org.login}`"> <img class="card-img-top rounded" :src="`${Org.avatar_url}`" :alt="Org.login" /></a>
               <div class="card-body">
                 <h5 class="card-title">{{ Org.login }}</h5>
                 <p class="card-text">{{ Org.description }}</p>
@@ -47,19 +47,21 @@ import Spinner from '@/loaders/spinner.vue';
     };
   },
   async mounted() {
-    await new Promise((resolve) => { setTimeout(resolve, 500); });
+    await new Promise((resolve) => {
+      setTimeout(resolve, 500);
+    });
     try {
-      const response = await axios.get('https://api.casjay.vercel.app/api/v1/git/orgs/casjay', {
+      const response = await axios.get('https://api.casjay.coffee/api/v1/git/orgs/casjay', {
         timeout: 5000,
       });
-      this.setOrgs = response.data;
+      this.setOrgs = response.data.orgs || response.data;
     } catch (error) {
       console.log('First attempt failed, retrying...');
       try {
-        const response = await axios.get('https://api.casjay.vercel.app/api/v1/git/orgs/casjay', {
+        const response = await axios.get('https://api.casjay.coffee/api/v1/git/orgs/casjay', {
           timeout: 5000,
         });
-        this.setOrgs = response.data;
+        this.setOrgs = response.data.orgs || response.data;
       } catch (retryError) {
         console.error('Failed after retry:', retryError);
       }

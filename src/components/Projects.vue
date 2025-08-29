@@ -60,20 +60,22 @@ import Spinner from '@/loaders/spinner.vue';
     };
   },
   async mounted() {
-    await new Promise((resolve) => { setTimeout(resolve, 500); });
-    const api = `https://api.casjay.vercel.app/api/v1/git/repos/${this.$route.params.id}`;
+    await new Promise((resolve) => {
+      setTimeout(resolve, 500);
+    });
+    const api = `https://api.casjay.coffee/api/v1/git/repos/${this.$route.params.id}`;
     try {
       const response = await axios.get(api, {
         timeout: 5000,
       });
-      this.setProjects = response.data;
+      this.setProjects = response.data.repos || response.data;
     } catch (error) {
       console.log('First attempt failed, retrying...');
       try {
         const response = await axios.get(api, {
           timeout: 5000,
         });
-        this.setProjects = response.data;
+        this.setProjects = response.data.repos || response.data;
       } catch (retryError) {
         console.error('Failed after retry:', retryError);
       }
