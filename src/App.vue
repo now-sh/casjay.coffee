@@ -139,53 +139,60 @@
 
 /* Global card styles for consistent dimensions */
 .card {
-  min-height: 350px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
+  height: 450px !important;
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
 }
 
 .card-body {
-  flex: 1 1 auto;
-  display: flex;
-  flex-direction: column;
+  height: 200px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  padding: 1rem !important;
 }
 
 .card-title {
-  font-size: 1.25rem;
-  margin-bottom: 0.75rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+  font-size: 1.25rem !important;
+  margin-bottom: 0.75rem !important;
+  height: 3rem !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
 }
 
 .card-text {
-  flex: 1 1 auto;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
+  height: 6rem !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 4 !important;
+  -webkit-box-orient: vertical !important;
+  margin-bottom: 0 !important;
 }
 
 .card-footer {
-  margin-top: auto;
-  flex-shrink: 0;
+  height: 120px !important;
+  padding: 1rem !important;
+  flex-shrink: 0 !important;
+  margin-top: auto !important;
 }
 
 /* Ensure equal height columns */
 .row-cols-md-3 > .col {
-  display: flex;
-  align-items: stretch;
+  display: flex !important;
+  align-items: stretch !important;
+  margin-bottom: 1rem !important;
 }
 
-/* Fixed width for card images */
+/* Fixed dimensions for card images */
 .card-img-top {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  flex-shrink: 0;
+  width: 100% !important;
+  height: 150px !important;
+  object-fit: cover !important;
+  flex-shrink: 0 !important;
 }
 </style>
