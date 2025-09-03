@@ -1,7 +1,20 @@
 <template>
   <div class="home">
-    <div v-if="setOrgs.length === 0 || isLoading == true">
+    <div v-if="isLoading">
       <spinner msgSpinner="Loading data from the API" />
+    </div>
+    <div v-else-if="hasError" class="text-center">
+      <div class="alert alert-danger m-5">
+        <h3>Error Loading Data</h3>
+        <p>{{ errorMessage }}</p>
+        <button @click="$router.go()" class="btn btn-primary">Try Again</button>
+      </div>
+    </div>
+    <div v-else-if="setOrgs.length === 0" class="text-center">
+      <div class="alert alert-warning m-5">
+        <h3>No Organizations Found</h3>
+        <p>No organizations were found.</p>
+      </div>
     </div>
     <div v-else>
       <div class="h-100 row row-cols-md-3 justify-content-center">
@@ -40,6 +53,8 @@ import Spinner from '@/loaders/spinner.vue';
     return {
       isLoading: true,
       setOrgs: [],
+      hasError: false,
+      errorMessage: '',
     };
   },
   async mounted() {
@@ -60,6 +75,8 @@ import Spinner from '@/loaders/spinner.vue';
         this.setOrgs = Array.isArray(response.data) ? response.data : (response.data.orgs || response.data);
       } catch (retryError) {
         console.error('Failed after retry:', retryError);
+        this.hasError = true;
+        this.errorMessage = 'Unable to load organizations. Please try again later.';
       }
     }
     this.isLoading = false;
