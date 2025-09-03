@@ -36,7 +36,7 @@
                 rel="noopener noreferrer"
                 :title="name"
               >
-                <img 
+                <img
                   :src="getShieldBadge(name, 'website')"
                   :alt="name"
                   class="website-icon"
@@ -106,7 +106,7 @@
                 rel="noopener noreferrer"
                 :title="`${name}: ${display}`"
               >
-                <img 
+                <img
                   :src="getShieldBadge(name, 'chat')"
                   :alt="name"
                   class="chat-icon"
@@ -131,7 +131,7 @@
                 rel="noopener noreferrer"
                 :title="name"
               >
-                <img 
+                <img
                   :src="getShieldBadge(name, 'social')"
                   :alt="name"
                   class="social-icon"
