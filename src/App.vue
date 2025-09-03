@@ -48,7 +48,10 @@
       Resume
     </router-link>
   </div>
-  <router-view />
+  <hr class="my-4" />
+  <div class="container">
+    <router-view />
+  </div>
   <br /><br /><br />
   <hr />
   <div class="footer col-sm-12">
