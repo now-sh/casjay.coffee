@@ -50,7 +50,6 @@ import Spinner from '@/loaders/spinner.vue';
       const response = await axios.get('https://api.casjay.coffee/api/v1/git/orgs/casjay', {
         timeout: 5000,
       });
-      console.log('Full API Response:', JSON.stringify(response.data, null, 2));
       this.setOrgs = Array.isArray(response.data) ? response.data : (response.data.orgs || response.data);
     } catch (error) {
       console.log('First attempt failed, retrying...');
