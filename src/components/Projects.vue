@@ -14,9 +14,15 @@
       </div>
     </div>
     <div v-else>
-      <h1>
-        <a :href="`https://github.com/${orgName}`">{{ orgName }}</a>
-      </h1>
+      <div class="text-center mb-4">
+        <h1>
+          <a :href="`https://github.com/${orgName}`">{{ orgName }}</a>
+        </h1>
+        <span class="badge bg-success fs-5 p-3 mt-2">
+          <i class="fas fa-code-branch me-2" />
+          {{ (repos as GitHubRepo[]).length }} {{ (repos as GitHubRepo[]).length === 1 ? 'Repository' : 'Repositories' }}
+        </span>
+      </div>
       <div class="h-100 row row-cols-1 row-cols-md-3 justify-content-center">
         <div v-for="repo in (repos as GitHubRepo[])" :key="repo.id" class="col h-100 p-2">
           <div class="card border-danger h-100">
