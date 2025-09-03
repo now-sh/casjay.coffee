@@ -1,6 +1,19 @@
 <template>
-  <div v-if="setProfile == '' || isLoading == true">
-    <spinner />
+  <div v-if="isLoading">
+    <spinner msgSpinner="Loading profile information" />
+  </div>
+  <div v-else-if="hasError" class="text-center">
+    <div class="alert alert-danger m-5">
+      <h3>Error Loading Data</h3>
+      <p>{{ errorMessage }}</p>
+      <button @click="$router.go()" class="btn btn-primary">Try Again</button>
+    </div>
+  </div>
+  <div v-else-if="!setProfile || Object.keys(setProfile).length === 0" class="text-center">
+    <div class="alert alert-warning m-5">
+      <h3>No Profile Information Found</h3>
+      <p>Profile information is currently unavailable.</p>
+    </div>
   </div>
   <div v-else>
     <div class="row text-center">
@@ -60,6 +73,8 @@ import Spinner from '@/loaders/spinner.vue';
     return {
       isLoading: true,
       setProfile: [],
+      hasError: false,
+      errorMessage: '',
     };
   },
   async mounted() {
@@ -78,6 +93,8 @@ import Spinner from '@/loaders/spinner.vue';
         this.setProfile = response.data;
       } catch (retryError) {
         console.error('Failed after retry:', retryError);
+        this.hasError = true;
+        this.errorMessage = 'Unable to load profile information. Please try again later.';
       }
     }
     this.isLoading = false;
