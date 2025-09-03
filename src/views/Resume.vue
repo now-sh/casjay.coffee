@@ -4,18 +4,13 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Options, Vue } from 'vue-class-component';
+<script setup lang="ts">
 import myResume from '@/components/myResume.vue'; // @ is an alias to /src
 
-@Options({
-  props: {
-    msg: { type: String },
-    msgSpinner: { type: String },
-  },
-  components: {
-    myResume,
-  },
-})
-export default class Resume extends Vue {}
+interface Props {
+  msg?: string;
+  msgSpinner?: string;
+}
+
+defineProps<Props>();
 </script>
