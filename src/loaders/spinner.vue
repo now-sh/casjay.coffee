@@ -1,12 +1,12 @@
 <template>
   <div class="coffee-spinner">
     <div class="coffee-cup">
-      <div class="coffee-liquid"></div>
-      <div class="coffee-handle"></div>
+      <div class="coffee-liquid" />
+      <div class="coffee-handle" />
       <div class="steam">
-        <div class="steam-1"></div>
-        <div class="steam-2"></div>
-        <div class="steam-3"></div>
+        <div class="steam-1" />
+        <div class="steam-2" />
+        <div class="steam-3" />
       </div>
     </div>
     <div class="loading-message">
