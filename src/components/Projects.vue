@@ -8,7 +8,7 @@
       message="Unable to load repositories. Please try again later."
     />
     <div
-      v-else-if="!repos || (Array.isArray(repos) && repos.length === 0) || (!Array.isArray(repos) && repos && typeof repos === 'object')"
+      v-else-if="!repos || (Array.isArray(repos) && repos.length === 0) || (!Array.isArray(repos) && repos && typeof repos === 'object' && 'message' in repos)"
       class="text-center"
     >
       <EmptyState
