@@ -1,33 +1,40 @@
 <template>
   <div class="home">
-    <div v-if="isLoading">
+    <div v-if="loading">
       <spinner msgSpinner="Loading data from the API" />
     </div>
-    <div v-else-if="hasError" class="text-center">
-      <div class="alert alert-danger m-5">
-        <h3>Error Loading Data</h3>
-        <p>{{ errorMessage }}</p>
-        <button @click="$router.go()" class="btn btn-primary">Try Again</button>
-      </div>
-    </div>
-    <div v-else-if="setOrgs.length === 0" class="text-center">
-      <div class="alert alert-warning m-5">
-        <h3>No Organizations Found</h3>
-        <p>No organizations were found.</p>
-      </div>
-    </div>
+    <ErrorState
+      v-else-if="error"
+      message="Unable to load organizations. Please try again later."
+    />
+    <EmptyState
+      v-else-if="!orgs || orgs.length === 0"
+      title="No Organizations Found"
+      message="No organizations were found."
+    />
     <div v-else>
       <div class="h-100 row row-cols-md-3 justify-content-center">
-        <!--<div class="card-group"> --->
-        <div v-for="Org in setOrgs" v-bind:key="Org.id">
-          <div class="col h-100 p-2">
-            <div class="card border-danger h-100">
-              <a :href="`/Projects/${Org.login}`"> <img class="card-img-top rounded" :src="Org.avatar_url" :alt="Org.login" /></a>
-              <div class="card-body">
-                <h5 class="card-title">{{ Org.login }}</h5>
-                <p class="card-text">{{ Org.description }}</p>
-              </div>
-              <div class="card-footer"><a :href="`/Projects/${Org.login}`" class="btn btn-danger card-link">Show all Repos</a><br /></div>
+        <div v-for="org in orgs" :key="org.id" class="col h-100 p-2">
+          <div class="card border-danger h-100">
+            <router-link :to="`/Projects/${org.login}`">
+              <img
+                class="card-img-top rounded"
+                :src="org.avatar_url"
+                :alt="org.login"
+                loading="lazy"
+              />
+            </router-link>
+            <div class="card-body">
+              <h5 class="card-title">{{ org.login }}</h5>
+              <p class="card-text">{{ org.description || 'No description available' }}</p>
+            </div>
+            <div class="card-footer">
+              <router-link
+                :to="`/Projects/${org.login}`"
+                class="btn btn-danger card-link"
+              >
+                Show all Repos
+              </router-link>
             </div>
           </div>
         </div>
@@ -36,58 +43,22 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Options, Vue } from 'vue-class-component';
-import axios from 'axios';
+<script setup lang="ts">
 import Spinner from '@/loaders/spinner.vue';
+import ErrorState from '@/components/ErrorState.vue';
+import EmptyState from '@/components/EmptyState.vue';
+import { useApi } from '@/composables/useApi';
+import type { GitHubOrg } from '@/types/api';
 
-@Options({
-  props: {
-    msg: String,
-    msgSpinner: { type: String },
-  },
-  components: { Spinner },
-  computed: {},
-  methods: {},
-  data() {
-    return {
-      isLoading: true,
-      setOrgs: [],
-      hasError: false,
-      errorMessage: '',
-    };
-  },
-  async mounted() {
-    await new Promise((resolve) => {
-      setTimeout(resolve, 500);
-    });
-    try {
-      const response = await axios.get('https://api.casjay.coffee/api/v1/git/orgs/casjay', {
-        timeout: 5000,
-      });
-      this.setOrgs = Array.isArray(response.data) ? response.data : (response.data.orgs || response.data);
-    } catch (error) {
-      console.log('First attempt failed, retrying...');
-      try {
-        const response = await axios.get('https://api.casjay.coffee/api/v1/git/orgs/casjay', {
-          timeout: 5000,
-        });
-        this.setOrgs = Array.isArray(response.data) ? response.data : (response.data.orgs || response.data);
-      } catch (retryError) {
-        console.error('Failed after retry:', retryError);
-        this.hasError = true;
-        this.errorMessage = 'Unable to load organizations. Please try again later.';
-      }
-    }
-    this.isLoading = false;
-  },
-})
-export default class myOrgs extends Vue {}
+const { data: orgs, loading, error } = useApi<GitHubOrg[]>(
+  'https://api.casjay.coffee/api/v1/git/orgs/casjay',
+);
 </script>
 
 <style scoped>
 .card-img-top {
   max-width: 150px !important;
   max-height: 150px !important;
+  object-fit: cover;
 }
 </style>
