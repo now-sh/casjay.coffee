@@ -45,7 +45,7 @@
             rel="noopener noreferrer"
             :title="name"
           >
-            <img 
+            <img
               :src="getShieldBadge(name, 'verify')"
               :alt="name"
               class="verify-icon"
@@ -66,7 +66,7 @@
             rel="noopener noreferrer"
             :title="`Sponsor via ${name}`"
           >
-            <img 
+            <img
               :src="getShieldBadge(name, 'sponsor')"
               :alt="name"
               class="sponsor-icon"
