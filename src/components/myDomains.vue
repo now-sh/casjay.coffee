@@ -58,5 +58,5 @@ import Spinner from '@/loaders/spinner.vue';
 import ErrorState from '@/components/ErrorState.vue';
 import EmptyState from '@/components/EmptyState.vue';
 
-const { data, loading, error } = useApi<DomainsData>('https://api.casjay.coffee/api/v1/me/domains', { timeout: 2000 });
+const { data, loading, error } = useApi<DomainsData>('https://api.casjay.coffee/api/v1/me/info/domains', { timeout: 2000 });
 </script>

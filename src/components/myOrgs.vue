@@ -51,6 +51,6 @@ import { useApi } from '@/composables/useApi';
 import type { GitHubOrg } from '@/types/api';
 
 const { data: orgs, loading, error } = useApi<GitHubOrg[]>(
-  'https://api.casjay.coffee/api/v1/git/orgs/casjay',
+  'https://api.casjay.coffee/api/v1/social/github/orgs/casjay',
 );
 </script>

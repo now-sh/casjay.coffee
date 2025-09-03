@@ -58,7 +58,7 @@ const route = useRoute();
 const orgName = computed(() => route.params.id as string);
 
 // Fetch repos for the organization
-const { data: repos, loading, error } = useApi<GitHubRepo[] | ApiErrorResponse>(() => `https://api.casjay.coffee/api/v1/git/repos/${orgName.value}`);
+const { data: repos, loading, error } = useApi<GitHubRepo[] | ApiErrorResponse>(() => `https://api.casjay.coffee/api/v1/social/github/repos/${orgName.value}`);
 
 // Fetch org data to get avatar for fallback image
 const { data: orgData } = useApi<GitHubOrg>(() => `https://api.github.com/orgs/${orgName.value}`, {}, { retries: 0 });

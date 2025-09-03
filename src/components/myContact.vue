@@ -124,7 +124,7 @@ import ErrorState from '@/components/ErrorState.vue';
 import EmptyState from '@/components/EmptyState.vue';
 import { getShieldBadge } from '@/utils/badges';
 
-const { data, loading, error } = useApi<ProfileContact>('https://api.casjay.coffee/api/v1/me/profile', {}, { retries: 1, retryDelay: 1000, initialDelay: 500 });
+const { data, loading, error } = useApi<ProfileContact>('https://api.casjay.coffee/api/v1/me/info/profile', {}, { retries: 1, retryDelay: 1000, initialDelay: 500 });
 </script>
 
 <style scoped>
