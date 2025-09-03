@@ -7,7 +7,7 @@
       v-else-if="error"
       message="Unable to load repositories. Please try again later."
     />
-    <div 
+    <div
       v-else-if="!repos || (Array.isArray(repos) && repos.length === 0) || (!Array.isArray(repos) && repos)"
       class="text-center"
     >
@@ -15,7 +15,11 @@
         title="No Repositories Found"
         :message="(!Array.isArray(repos) && repos && 'message' in repos) ? (repos as ApiErrorResponse).message : `No repositories were found for ${orgName}.`"
       />
-      <div v-if="!Array.isArray(repos) && repos && 'github_profile' in repos && (repos as ApiErrorResponse).github_profile" v-html="(repos as ApiErrorResponse).github_profile" class="mt-3" />
+      <div
+        v-if="!Array.isArray(repos) && repos && 'github_profile' in repos && (repos as ApiErrorResponse).github_profile"
+        v-html="(repos as ApiErrorResponse).github_profile"
+        class="mt-3"
+      />
     </div>
     <div v-else>
       <h1>
