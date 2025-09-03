@@ -18,7 +18,9 @@
       "Bash(git pull:*)",
       "Bash(mkdir:*)",
       "WebFetch(domain:cdn.jsdelivr.net)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(chmod:*)",
+      "Bash(ls:*)"
     ],
     "deny": []
   }
