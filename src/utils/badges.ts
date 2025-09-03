@@ -74,6 +74,8 @@ export const getShieldBadge = (name: string, category: string) => {
     social: '1877F2',
     sponsor: '00457C',
     verify: '0093DD',
+    website: '4CAF50',
+    chat: '9C27B0',
   };
   
   const encodedName = encodeURIComponent(name);
