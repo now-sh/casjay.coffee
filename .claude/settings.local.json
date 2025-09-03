@@ -20,7 +20,8 @@
       "WebFetch(domain:cdn.jsdelivr.net)",
       "Bash(node:*)",
       "Bash(chmod:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(npm run dev:*)"
     ],
     "deny": []
   }
