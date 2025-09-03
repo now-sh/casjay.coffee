@@ -182,10 +182,43 @@
 }
 
 /* Ensure equal height columns */
+.row-cols-1 > .col,
 .row-cols-md-3 > .col {
   display: flex !important;
   align-items: stretch !important;
   margin-bottom: 1rem !important;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 767.98px) {
+  .card {
+    height: 400px !important;
+    margin: 0 auto 1rem auto !important;
+    max-width: 350px !important;
+  }
+  
+  .card-body {
+    height: 180px !important;
+  }
+  
+  .card-footer {
+    height: 100px !important;
+  }
+  
+  .card-img-top {
+    height: 120px !important;
+  }
+  
+  /* Mobile navigation adjustments */
+  #nav {
+    padding: 15px !important;
+    flex-wrap: wrap !important;
+  }
+  
+  #nav a {
+    margin: 0.25rem !important;
+    font-size: 0.875rem !important;
+  }
 }
 
 /* Fixed dimensions for card images */
