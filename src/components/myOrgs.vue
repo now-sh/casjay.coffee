@@ -13,7 +13,7 @@
       message="No organizations were found."
     />
     <div v-else>
-      <div class="h-100 row row-cols-md-3 justify-content-center">
+      <div class="h-100 row row-cols-1 row-cols-md-3 justify-content-center">
         <div v-for="org in orgs" :key="org.id" class="col h-100 p-2">
           <div class="card border-danger h-100">
             <router-link :to="`/Projects/${org.login}`">
