@@ -8,7 +8,7 @@
       message="Unable to load repositories. Please try again later."
     />
     <div
-      v-else-if="!repos || (Array.isArray(repos) && repos.length === 0) || (!Array.isArray(repos) && repos && typeof repos === 'object' && 'message' in repos)"
+      v-else-if="showEmptyState"
       class="text-center"
     >
       <EmptyState
@@ -95,4 +95,15 @@ const { data: orgData } = useApi<GitHubOrg>(
   {},
   { retries: 0 },
 );
+
+// Computed property to check if we have an error response
+const isErrorResponse = computed(() => repos.value
+  && !Array.isArray(repos.value)
+  && typeof repos.value === 'object'
+  && 'message' in repos.value);
+
+// Computed property to check if we should show empty state
+const showEmptyState = computed(() => !repos.value
+  || (Array.isArray(repos.value) && repos.value.length === 0)
+  || isErrorResponse.value);
 </script>
