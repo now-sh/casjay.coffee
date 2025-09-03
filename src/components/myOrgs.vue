@@ -54,11 +54,3 @@ const { data: orgs, loading, error } = useApi<GitHubOrg[]>(
   'https://api.casjay.coffee/api/v1/git/orgs/casjay',
 );
 </script>
-
-<style scoped>
-.card-img-top {
-  max-width: 150px !important;
-  max-height: 150px !important;
-  object-fit: cover;
-}
-</style>
