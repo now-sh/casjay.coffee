@@ -105,10 +105,21 @@
             <br />
           </div>
           <div v-else>
-            <span v-for="[name, url] in data.social" v-bind:key="`${name}`">
-              <a :href="`http://${url}`">{{ name }}</a>
-              <br />
-            </span>
+            <a
+              v-for="[name, url] in data.social"
+              :key="`${name}`"
+              :href="`https://${url}`"
+              class="mx-2"
+              target="_blank"
+              rel="noopener noreferrer"
+              :title="name"
+            >
+              <img 
+                :src="getShieldBadge(name, 'social')"
+                :alt="name"
+                class="social-icon"
+              />
+            </a>
             <br />
           </div>
         </div>
@@ -124,6 +135,7 @@ import type { ProfileContact } from '@/types/api';
 import Spinner from '@/loaders/spinner.vue';
 import ErrorState from '@/components/ErrorState.vue';
 import EmptyState from '@/components/EmptyState.vue';
+import { getShieldBadge } from '@/utils/badges';
 
 const { data, loading, error } = useApi<ProfileContact>(
   'https://raw.githubusercontent.com/casjay/casjay/main/profile.json',
@@ -131,3 +143,21 @@ const { data, loading, error } = useApi<ProfileContact>(
   { retries: 1, retryDelay: 1000, initialDelay: 500 },
 );
 </script>
+
+<style scoped>
+.social-icon {
+  height: 40px;
+  margin: 5px;
+  transition: transform 0.2s ease;
+}
+
+.social-icon:hover {
+  transform: scale(1.1);
+}
+
+@media (max-width: 767.98px) {
+  .social-icon {
+    height: 30px;
+  }
+}
+</style>
