@@ -13,10 +13,10 @@
     >
       <EmptyState
         title="No Repositories Found"
-        :message="(!Array.isArray(repos) && repos && 'message' in repos) ? (repos as ApiErrorResponse).message : `No repositories were found for ${orgName}.`"
+        :message="errorMessage"
       />
       <div
-        v-if="!Array.isArray(repos) && repos && 'github_profile' in repos && (repos as ApiErrorResponse).github_profile"
+        v-if="isErrorResponse"
         class="mt-4"
       >
         <a
@@ -97,13 +97,28 @@ const { data: orgData } = useApi<GitHubOrg>(
 );
 
 // Computed property to check if we have an error response
-const isErrorResponse = computed(() => repos.value
-  && !Array.isArray(repos.value)
-  && typeof repos.value === 'object'
-  && 'message' in repos.value);
+const isErrorResponse = computed(() => {
+  if (!repos.value) return false;
+  // Handle plain text response
+  if (typeof repos.value === 'string') return true;
+  // Handle JSON error response
+  return !Array.isArray(repos.value)
+    && typeof repos.value === 'object'
+    && 'message' in repos.value;
+});
 
 // Computed property to check if we should show empty state
 const showEmptyState = computed(() => !repos.value
   || (Array.isArray(repos.value) && repos.value.length === 0)
   || isErrorResponse.value);
+
+// Get error message
+const errorMessage = computed(() => {
+  if (!repos.value) return `No repositories were found for ${orgName.value}.`;
+  if (typeof repos.value === 'string') return repos.value.trim();
+  if (isErrorResponse.value && 'message' in repos.value) {
+    return (repos.value as ApiErrorResponse).message;
+  }
+  return `No repositories were found for ${orgName.value}.`;
+});
 </script>
