@@ -136,4 +136,56 @@
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+/* Global card styles for consistent dimensions */
+.card {
+  min-height: 350px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-body {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.card-text {
+  flex: 1 1 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.card-footer {
+  margin-top: auto;
+  flex-shrink: 0;
+}
+
+/* Ensure equal height columns */
+.row-cols-md-3 > .col {
+  display: flex;
+  align-items: stretch;
+}
+
+/* Fixed width for card images */
+.card-img-top {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
 </style>
