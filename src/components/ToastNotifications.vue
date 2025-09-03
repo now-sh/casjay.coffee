@@ -8,7 +8,11 @@
       v-for="toast in toasts"
       :key="toast.id"
       :class="['toast', `toast-${toast.type}`]"
+      role="alert"
+      tabindex="0"
       @click="removeToast(toast.id)"
+      @keydown.enter="removeToast(toast.id)"
+      @keydown.space.prevent="removeToast(toast.id)"
     >
       <div class="toast-icon">
         <span v-if="toast.type === 'success'">✓</span>
