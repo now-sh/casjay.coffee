@@ -1,6 +1,19 @@
 <template>
-  <div v-if="setContact == '' || setContact == null || isLoading == true">
-    <spinner />
+  <div v-if="isLoading">
+    <spinner msgSpinner="Loading contact information" />
+  </div>
+  <div v-else-if="hasError" class="text-center">
+    <div class="alert alert-danger m-5">
+      <h3>Error Loading Data</h3>
+      <p>{{ errorMessage }}</p>
+      <button @click="$router.go()" class="btn btn-primary">Try Again</button>
+    </div>
+  </div>
+  <div v-else-if="!setContact || Object.keys(setContact).length === 0" class="text-center">
+    <div class="alert alert-warning m-5">
+      <h3>No Contact Information Found</h3>
+      <p>Contact information is currently unavailable.</p>
+    </div>
   </div>
   <div v-else>
     <div class="row text-center">
@@ -128,6 +141,8 @@ import Spinner from '@/loaders/spinner.vue';
     return {
       isLoading: true,
       setContact: [],
+      hasError: false,
+      errorMessage: '',
     };
   },
   async mounted() {
@@ -146,6 +161,8 @@ import Spinner from '@/loaders/spinner.vue';
         this.setContact = response.data;
       } catch (retryError) {
         console.error('Failed after retry:', retryError);
+        this.hasError = true;
+        this.errorMessage = 'Unable to load contact information. Please try again later.';
       }
     }
     this.isLoading = false;
