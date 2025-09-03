@@ -1,6 +1,6 @@
 <template>
   <div class="skeleton-loader" :style="{ width, height }">
-    <div class="skeleton-shimmer"></div>
+    <div class="skeleton-shimmer" />
   </div>
 </template>
 
