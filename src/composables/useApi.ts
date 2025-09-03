@@ -58,6 +58,10 @@ export function useApi<T = any>(
         // eslint-disable-next-line no-await-in-loop
         const response = await axios.get<T>(apiUrl, {
           timeout: 5000,
+          headers: {
+            Accept: 'application/json',
+            ...config?.headers,
+          },
           ...config,
         });
 
