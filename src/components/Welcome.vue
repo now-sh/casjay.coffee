@@ -1,104 +1,82 @@
 <template>
-  <div v-if="isLoading">
+  <div v-if="loading">
     <spinner msgSpinner="Loading profile information" />
   </div>
-  <div v-else-if="hasError" class="text-center">
-    <div class="alert alert-danger m-5">
-      <h3>Error Loading Data</h3>
-      <p>{{ errorMessage }}</p>
-      <button @click="$router.go()" class="btn btn-primary">Try Again</button>
-    </div>
-  </div>
-  <div v-else-if="!setProfile || Object.keys(setProfile).length === 0" class="text-center">
-    <div class="alert alert-warning m-5">
-      <h3>No Profile Information Found</h3>
-      <p>Profile information is currently unavailable.</p>
-    </div>
-  </div>
-  <div v-else>
-    <div class="row text-center">
-      <div class="col-md-6 offset-md-3">
-        <div class="text-center">
-          <h1>{{ setProfile.name }}</h1>
-          <p>{{ setProfile.bio }}</p>
-          <br />
-        </div>
-        <h2>Email:</h2>
-        <div>
-          <span v-for="email in setProfile.email" v-bind:key="email">
-            <a :href="`mailto:${email}`">{{ email }}</a>
-            <br />
-          </span>
-          <br />
-        </div>
-        <div>
-          <h2>Verify</h2>
-          <span v-for="[name, url] in setProfile.verify" v-bind:key="`${name}`">
-            <a :href="`http://${url}`" class="p-3"> {{ name }} </a>
-          </span>
-          <br />
-          <br />
-        </div>
-        <div>
-          <h2>Sponsor:</h2>
-          <span class="m-5" v-for="[name, url] in setProfile.sponsor" v-bind:key="name">
-            <a :href="`${url}`"> {{ name }} </a>
-          </span>
-          <br />
-          <br />
-        </div>
+  <ErrorState
+    v-else-if="error"
+    message="Unable to load profile information. Please try again later."
+  />
+  <EmptyState
+    v-else-if="!profile || Object.keys(profile).length === 0"
+    title="No Profile Information Found"
+    message="Profile information is currently unavailable."
+  />
+  <div v-else class="row text-center">
+    <div class="col-md-6 offset-md-3">
+      <div class="text-center">
+        <h1>{{ profile.name }}</h1>
+        <p>{{ profile.bio }}</p>
+        <br />
       </div>
+
+      <section v-if="profile.email?.length">
+        <h2>Email:</h2>
+        <div class="mb-3">
+          <a
+            v-for="email in profile.email"
+            :key="email"
+            :href="`mailto:${email}`"
+            class="d-block"
+          >
+            {{ email }}
+          </a>
+        </div>
+      </section>
+
+      <section v-if="profile.verify?.length">
+        <h2>Verify</h2>
+        <div class="mb-3">
+          <a
+            v-for="[name, url] in profile.verify"
+            :key="name"
+            :href="`https://${url}`"
+            class="p-3"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {{ name }}
+          </a>
+        </div>
+      </section>
+
+      <section v-if="profile.sponsor?.length">
+        <h2>Sponsor:</h2>
+        <div class="mb-3">
+          <a
+            v-for="[name, url] in profile.sponsor"
+            :key="name"
+            :href="url"
+            class="mx-3"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {{ name }}
+          </a>
+        </div>
+      </section>
     </div>
   </div>
-  <div class="mb-5"></div>
+  <div class="mb-5" />
 </template>
-<script lang="ts">
-import { Options, Vue } from 'vue-class-component';
-import axios from 'axios';
-import Spinner from '@/loaders/spinner.vue';
 
-@Options({
-  props: {
-    msg: String,
-    msgSpinner: { type: String },
-  },
-  components: { Spinner },
-  computed: {},
-  methods: {
-    isLoading() {
-      this.isLoading = true;
-    },
-  },
-  data() {
-    return {
-      isLoading: true,
-      setProfile: [],
-      hasError: false,
-      errorMessage: '',
-    };
-  },
-  async mounted() {
-    await new Promise((resolve) => { setTimeout(resolve, 500); });
-    try {
-      const response = await axios.get('https://raw.githubusercontent.com/casjay/casjay/main/profile.json', {
-        timeout: 5000,
-      });
-      this.setProfile = response.data;
-    } catch (error) {
-      console.log('First attempt failed, retrying...');
-      try {
-        const response = await axios.get('https://raw.githubusercontent.com/casjay/casjay/main/profile.json', {
-          timeout: 5000,
-        });
-        this.setProfile = response.data;
-      } catch (retryError) {
-        console.error('Failed after retry:', retryError);
-        this.hasError = true;
-        this.errorMessage = 'Unable to load profile information. Please try again later.';
-      }
-    }
-    this.isLoading = false;
-  },
-})
-export default class Welcome extends Vue {}
+<script setup lang="ts">
+import Spinner from '@/loaders/spinner.vue';
+import ErrorState from '@/components/ErrorState.vue';
+import EmptyState from '@/components/EmptyState.vue';
+import { useApi } from '@/composables/useApi';
+import type { ProfileContact } from '@/types/api';
+
+const { data: profile, loading, error } = useApi<ProfileContact>(
+  'https://raw.githubusercontent.com/casjay/casjay/main/profile.json',
+);
 </script>
