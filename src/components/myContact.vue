@@ -29,13 +29,21 @@
             <br />
           </div>
           <div v-else>
-            <div>
-              <span class="m-5" v-for="[name, url] in data.websites" v-bind:key="name">
-                <a :href="`${url}`"> {{ name }} </a>
-                <br />
-              </span>
-              <br />
+            <div v-for="[name, url] in data.websites" :key="name" class="website-link-row">
+              <a
+                :href="`${url}`"
+                target="_blank"
+                rel="noopener noreferrer"
+                :title="name"
+              >
+                <img 
+                  :src="getShieldBadge(name, 'website')"
+                  :alt="name"
+                  class="website-icon"
+                />
+              </a>
             </div>
+            <br />
           </div>
           <h2 class="text-danger">Phone/Fax:</h2>
           <div v-if="data.phone == null">
@@ -91,10 +99,21 @@
             <br />
           </div>
           <div v-else>
-            <span v-for="[name, url, display] in data.chat" v-bind:key="`${name}`">
-              <a :href="`http://${url}`">{{ name }} </a> : {{ display }}
-              <br />
-            </span>
+            <div v-for="[name, url, display] in data.chat" :key="`${name}`" class="chat-link-row">
+              <a
+                :href="`https://${url}`"
+                target="_blank"
+                rel="noopener noreferrer"
+                :title="`${name}: ${display}`"
+              >
+                <img 
+                  :src="getShieldBadge(name, 'chat')"
+                  :alt="name"
+                  class="chat-icon"
+                />
+              </a>
+              <span class="ms-2">{{ display }}</span>
+            </div>
           </div>
         </div>
         <div>
@@ -105,21 +124,20 @@
             <br />
           </div>
           <div v-else>
-            <a
-              v-for="[name, url] in data.social"
-              :key="`${name}`"
-              :href="`https://${url}`"
-              class="mx-2"
-              target="_blank"
-              rel="noopener noreferrer"
-              :title="name"
-            >
-              <img 
-                :src="getShieldBadge(name, 'social')"
-                :alt="name"
-                class="social-icon"
-              />
-            </a>
+            <div v-for="[name, url] in data.social" :key="`${name}`" class="social-link-row">
+              <a
+                :href="`https://${url}`"
+                target="_blank"
+                rel="noopener noreferrer"
+                :title="name"
+              >
+                <img 
+                  :src="getShieldBadge(name, 'social')"
+                  :alt="name"
+                  class="social-icon"
+                />
+              </a>
+            </div>
             <br />
           </div>
         </div>
@@ -145,18 +163,34 @@ const { data, loading, error } = useApi<ProfileContact>(
 </script>
 
 <style scoped>
-.social-icon {
+.social-icon,
+.website-icon,
+.chat-icon {
   height: 40px;
   margin: 5px;
   transition: transform 0.2s ease;
+  vertical-align: middle;
 }
 
-.social-icon:hover {
+.social-icon:hover,
+.website-icon:hover,
+.chat-icon:hover {
   transform: scale(1.1);
 }
 
+.social-link-row,
+.website-link-row,
+.chat-link-row {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @media (max-width: 767.98px) {
-  .social-icon {
+  .social-icon,
+  .website-icon,
+  .chat-icon {
     height: 30px;
   }
 }
