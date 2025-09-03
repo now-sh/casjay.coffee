@@ -7,17 +7,22 @@
       v-else-if="error"
       message="Unable to load repositories. Please try again later."
     />
-    <EmptyState
-      v-else-if="!repos || repos.length === 0"
-      title="No Repositories Found"
-      :message="`No repositories were found for ${orgName}.`"
-    />
+    <div 
+      v-else-if="!repos || (Array.isArray(repos) && repos.length === 0) || (repos && 'message' in repos)"
+      class="text-center"
+    >
+      <EmptyState
+        title="No Repositories Found"
+        :message="(repos && 'message' in repos) ? repos.message : `No repositories were found for ${orgName}.`"
+      />
+      <div v-if="repos && 'github_profile' in repos && repos.github_profile" v-html="repos.github_profile" class="mt-3" />
+    </div>
     <div v-else>
       <h1>
         <a :href="`https://github.com/${orgName}`">{{ orgName }}</a>
       </h1>
       <div class="h-100 row row-cols-1 row-cols-md-3 justify-content-center">
-        <div v-for="repo in repos" :key="repo.id" class="col h-100 p-2">
+        <div v-for="repo in (repos as GitHubRepo[])" :key="repo.id" class="col h-100 p-2">
           <div class="card border-danger h-100">
             <img
               class="card-img-top rounded"
@@ -61,13 +66,13 @@ import Spinner from '@/loaders/spinner.vue';
 import ErrorState from '@/components/ErrorState.vue';
 import EmptyState from '@/components/EmptyState.vue';
 import { useApi } from '@/composables/useApi';
-import type { GitHubRepo, GitHubOrg } from '@/types/api';
+import type { GitHubRepo, GitHubOrg, ApiErrorResponse } from '@/types/api';
 
 const route = useRoute();
 const orgName = computed(() => route.params.id as string);
 
 // Fetch repos for the organization
-const { data: repos, loading, error } = useApi<GitHubRepo[]>(
+const { data: repos, loading, error } = useApi<GitHubRepo[] | ApiErrorResponse>(
   () => `https://api.casjay.coffee/api/v1/git/repos/${orgName.value}`,
 );
 
