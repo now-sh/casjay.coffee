@@ -1,45 +1,45 @@
 <template>
   <div class="home">
-    <div v-if="isLoading">
+    <div v-if="loading">
       <spinner msgSpinner="Loading data from the API" />
     </div>
-    <div v-else-if="hasError" class="text-center">
-      <div class="alert alert-danger m-5">
-        <h3>Error Loading Data</h3>
-        <p>{{ errorMessage }}</p>
-        <button @click="$router.go()" class="btn btn-primary">Try Again</button>
-      </div>
-    </div>
-    <div v-else-if="setProjects.length === 0" class="text-center">
-      <div class="alert alert-warning m-5">
-        <h3>No Repositories Found</h3>
-        <p>No repositories were found for {{ orgName }}.</p>
-      </div>
-    </div>
+    <ErrorState
+      v-else-if="error"
+      message="Unable to load repositories. Please try again later."
+    />
+    <EmptyState
+      v-else-if="!repos || repos.length === 0"
+      title="No Repositories Found"
+      :message="`No repositories were found for ${orgName}.`"
+    />
     <div v-else>
       <h1>
-        <a :href="`http://github.com/${orgName}`">{{ orgName }}</a>
+        <a :href="`https://github.com/${orgName}`">{{ orgName }}</a>
       </h1>
       <div class="h-100 row row-cols-md-3 justify-content-center">
-        <!--<div class="card-group"> --->
-        <div v-for="Org in setProjects" v-bind:key="Org.id">
-          <div class="col h-100 p-2">
-            <div class="card border-danger h-100">
-              <div class="card-body">
-                <h2 class="card-title">{{ Org.name }}</h2>
-                <p class="card-text">{{ Org.description }}</p>
+        <div v-for="repo in repos" :key="repo.id" class="col h-100 p-2">
+          <div class="card border-danger h-100">
+            <div class="card-body">
+              <h2 class="card-title">{{ repo.name }}</h2>
+              <p class="card-text">{{ repo.description || 'No description available' }}</p>
+            </div>
+            <div class="card-footer">
+              <div class="mb-2">
+                <span class="badge bg-secondary me-2">⭐ {{ repo.stargazers_count }}</span>
+                <span class="badge bg-secondary me-2">🍴 {{ repo.forks_count }}</span>
+                <span class="badge bg-secondary me-2">👀 {{ repo.watchers_count }}</span>
               </div>
-              <br />
-              <div class="card-footer">
-                <span>
-                  Stars: {{ Org.stargazers_count }} | forks: {{ Org.forks_count }} | watchers:
-                  {{ Org.watchers_count }}
-                  <br />
-                  language: {{ Org.language || 'none detected' }}
-                </span>
-                <br /><br />
-                <a :href="`http://github.com/${Org.full_name}`" class="btn btn-danger btn-outline-success card-link" target="_blank">View github repo</a><br />
+              <div class="mb-2">
+                Language: <span class="badge bg-info">{{ repo.language || 'None' }}</span>
               </div>
+              <a
+                :href="`https://github.com/${repo.full_name}`"
+                class="btn btn-danger btn-outline-success card-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View GitHub Repo
+              </a>
             </div>
           </div>
         </div>
@@ -48,54 +48,19 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Options, Vue } from 'vue-class-component';
-import axios from 'axios';
+<script setup lang="ts">
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
 import Spinner from '@/loaders/spinner.vue';
+import ErrorState from '@/components/ErrorState.vue';
+import EmptyState from '@/components/EmptyState.vue';
+import { useApi } from '@/composables/useApi';
+import type { GitHubRepo } from '@/types/api';
 
-@Options({
-  props: {
-    msg: String,
-    msgSpinner: { type: String },
-  },
-  components: { Spinner },
-  computed: {},
-  methods: {},
-  data() {
-    return {
-      isLoading: true,
-      setProjects: [],
-      orgName: '',
-      hasError: false,
-      errorMessage: '',
-    };
-  },
-  async mounted() {
-    this.orgName = this.$route.params.id;
-    await new Promise((resolve) => {
-      setTimeout(resolve, 500);
-    });
-    const api = `https://api.casjay.coffee/api/v1/git/repos/${this.$route.params.id}`;
-    try {
-      const response = await axios.get(api, {
-        timeout: 5000,
-      });
-      this.setProjects = Array.isArray(response.data) ? response.data : (response.data.repos || response.data);
-    } catch (error) {
-      console.log('First attempt failed, retrying...');
-      try {
-        const response = await axios.get(api, {
-          timeout: 5000,
-        });
-        this.setProjects = Array.isArray(response.data) ? response.data : (response.data.repos || response.data);
-      } catch (retryError) {
-        console.error('Failed after retry:', retryError);
-        this.hasError = true;
-        this.errorMessage = 'Unable to load repositories. Please try again later.';
-      }
-    }
-    this.isLoading = false;
-  },
-})
-export default class myProjects extends Vue {}
+const route = useRoute();
+const orgName = computed(() => route.params.id as string);
+
+const { data: repos, loading, error } = useApi<GitHubRepo[]>(
+  () => `https://api.casjay.coffee/api/v1/git/repos/${orgName.value}`,
+);
 </script>
