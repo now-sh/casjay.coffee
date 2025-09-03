@@ -1,7 +1,20 @@
 <template>
   <div class="home">
-    <div v-if="setProjects.length === 0 || isLoading == true">
+    <div v-if="isLoading">
       <spinner msgSpinner="Loading data from the API" />
+    </div>
+    <div v-else-if="hasError" class="text-center">
+      <div class="alert alert-danger m-5">
+        <h3>Error Loading Data</h3>
+        <p>{{ errorMessage }}</p>
+        <button @click="$router.go()" class="btn btn-primary">Try Again</button>
+      </div>
+    </div>
+    <div v-else-if="setProjects.length === 0" class="text-center">
+      <div class="alert alert-warning m-5">
+        <h3>No Repositories Found</h3>
+        <p>No repositories were found for {{ orgName }}.</p>
+      </div>
     </div>
     <div v-else>
       <h1>
@@ -53,6 +66,8 @@ import Spinner from '@/loaders/spinner.vue';
       isLoading: true,
       setProjects: [],
       orgName: '',
+      hasError: false,
+      errorMessage: '',
     };
   },
   async mounted() {
@@ -75,6 +90,8 @@ import Spinner from '@/loaders/spinner.vue';
         this.setProjects = Array.isArray(response.data) ? response.data : (response.data.repos || response.data);
       } catch (retryError) {
         console.error('Failed after retry:', retryError);
+        this.hasError = true;
+        this.errorMessage = 'Unable to load repositories. Please try again later.';
       }
     }
     this.isLoading = false;
