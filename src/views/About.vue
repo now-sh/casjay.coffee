@@ -24,15 +24,6 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Options, Vue } from 'vue-class-component';
-
-@Options({
-  props: {
-    msg: { type: String },
-    msgSpinner: { type: String },
-  },
-  components: {},
-})
-export default class About extends Vue {}
+<script setup lang="ts">
+// No imports or logic needed for this static component
 </script>
