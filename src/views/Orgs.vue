@@ -4,18 +4,13 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Options, Vue } from 'vue-class-component';
+<script setup lang="ts">
 import myOrgs from '@/components/myOrgs.vue'; // @ is an alias to /src
 
-@Options({
-  props: {
-    msg: { type: String },
-    msgSpinner: { type: String },
-  },
-  components: {
-    myOrgs,
-  },
-})
-export default class Orgs extends Vue {}
+interface Props {
+  msg?: string;
+  msgSpinner?: string;
+}
+
+defineProps<Props>();
 </script>
