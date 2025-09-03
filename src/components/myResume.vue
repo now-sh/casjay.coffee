@@ -52,13 +52,26 @@ onMounted(async () => {
         await new Promise((resolve) => setTimeout(resolve, 1000));
       }
 
+      // First get the JSON response with PDF URL
       // eslint-disable-next-line no-await-in-loop
-      const response = await axios.get(resumeUrl, {
+      const metaResponse = await axios.get(resumeUrl, {
         timeout: 5000,
+      });
+
+      // Extract the PDF URL from the response
+      const pdfUrl = metaResponse.data.url || metaResponse.data.downloadUrl;
+      if (!pdfUrl) {
+        throw new Error('No PDF URL found in response');
+      }
+
+      // Now fetch the actual PDF
+      // eslint-disable-next-line no-await-in-loop
+      const pdfResponse = await axios.get(pdfUrl, {
+        timeout: 10000,
         responseType: 'blob',
       });
 
-      pdfBlob.value = new Blob([response.data]);
+      pdfBlob.value = new Blob([pdfResponse.data]);
       loading.value = false;
       return;
     } catch (err) {
