@@ -20,7 +20,7 @@
         <div v-for="repo in repos" :key="repo.id" class="col h-100 p-2">
           <div class="card border-danger h-100">
             <div class="card-body">
-              <h2 class="card-title">{{ repo.name }}</h2>
+              <h5 class="card-title">{{ repo.name }}</h5>
               <p class="card-text">{{ repo.description || 'No description available' }}</p>
             </div>
             <div class="card-footer">
