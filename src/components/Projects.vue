@@ -18,12 +18,6 @@
         <h1>
           <a :href="`https://github.com/${orgName}`">{{ orgName }}</a>
         </h1>
-        <div class="mt-4 mb-4">
-          <a :href="`https://github.com/${orgName}`" target="_blank" rel="noopener noreferrer" class="badge bg-success fs-5 p-3 text-decoration-none">
-            <i class="fas fa-code-branch me-2" />
-            {{ orgName }} has {{ (repos as GitHubRepo[]).length }} {{ (repos as GitHubRepo[]).length === 1 ? 'Repository' : 'Repositories' }}
-          </a>
-        </div>
       </div>
       <div class="h-100 row row-cols-1 row-cols-md-3 justify-content-center">
         <div v-for="repo in (repos as GitHubRepo[])" :key="repo.id" class="col h-100 p-2">
