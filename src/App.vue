@@ -196,25 +196,25 @@
     margin: 0 auto 1rem auto !important;
     max-width: 350px !important;
   }
-  
+
   .card-body {
     height: 180px !important;
   }
-  
+
   .card-footer {
     height: 100px !important;
   }
-  
+
   .card-img-top {
     height: 120px !important;
   }
-  
+
   /* Mobile navigation adjustments */
   #nav {
     padding: 15px !important;
     flex-wrap: wrap !important;
   }
-  
+
   #nav a {
     margin: 0.25rem !important;
     font-size: 0.875rem !important;
