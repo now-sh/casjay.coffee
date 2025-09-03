@@ -69,6 +69,9 @@ export function useApi<T = any>(
             data.value = (response.data as any).repos;
           } else if (typeof response.data === 'object' && response.data !== null && 'orgs' in response.data) {
             data.value = (response.data as any).orgs;
+          } else if (typeof response.data === 'object' && response.data !== null && 'message' in response.data) {
+            // Handle "No repositories found" or similar messages - preserve the response
+            data.value = response.data;
           } else {
             data.value = response.data;
           }
