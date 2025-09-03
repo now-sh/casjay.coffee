@@ -3,8 +3,8 @@
   <div class="container">
     <div class="jumbotron">
       <h1>
-        <i class="fa fa-frown-o red"></i>
-        <a href="https://www.google.com/search?q=server+error+404" target="_blank">404 Not Found</a>
+        <i class="fa fa-frown-o red" />
+        <a href="https://www.google.com/search?q=server+error+404" target="_blank" rel="noopener noreferrer">404 Not Found</a>
       </h1>
       <br />
       <p class="lead">
@@ -19,17 +19,17 @@
           /><br />
         </div>
       </div>
-      <a href="/" class="btn btn-secondary btn-outline-danger btn-lg btn-block"
-        >return to homepage
+      <a
+        href="/"
+        class="btn btn-secondary btn-outline-danger btn-lg btn-block"
+      >return to homepage
       </a>
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import { Vue } from 'vue-class-component';
-
-export default class NotFound extends Vue {}
+<script setup lang="ts">
+// 404 Not Found page - no props or imports needed
 </script>
 
 <style></style>
