@@ -39,11 +39,16 @@
             </div>
             <div class="card-footer">
               <router-link
+                v-if="!isLoadingCount(org.login)"
                 :to="`/Projects/${org.login}`"
                 class="btn btn-danger card-link"
               >
-                Show all Repos
+                {{ getRepoCount(org.login) }} {{ getRepoCount(org.login) === 1 ? 'Repository' : 'Repositories' }}
               </router-link>
+              <span v-else class="btn btn-secondary card-link disabled">
+                <i class="fas fa-spinner fa-spin me-1" />
+                Loading...
+              </span>
             </div>
           </div>
         </div>
@@ -53,6 +58,7 @@
 </template>
 
 <script setup lang="ts">
+import { ref, watch } from 'vue';
 import Spinner from '@/loaders/spinner.vue';
 import ErrorState from '@/components/ErrorState.vue';
 import EmptyState from '@/components/EmptyState.vue';
@@ -62,4 +68,34 @@ import type { GitHubOrg } from '@/types/api';
 const { data: orgs, loading, error } = useApi<GitHubOrg[]>(
   'https://api.casjay.coffee/api/v1/social/github/orgs/casjay',
 );
+
+// Store repo counts for each org
+const repoCounts = ref<Record<string, number>>({});
+const loadingCounts = ref<Record<string, boolean>>({});
+
+// Fetch repo count for each org when orgs are loaded
+watch(orgs, async (newOrgs) => {
+  if (newOrgs && Array.isArray(newOrgs)) {
+    newOrgs.forEach(async (org) => {
+      loadingCounts.value[org.login] = true;
+      try {
+        const response = await fetch(`https://api.casjay.coffee/api/v1/social/github/repos/${org.login}`);
+        const data = await response.json();
+        if (Array.isArray(data)) {
+          repoCounts.value[org.login] = data.length;
+        } else {
+          repoCounts.value[org.login] = 0;
+        }
+      } catch {
+        repoCounts.value[org.login] = 0;
+      } finally {
+        loadingCounts.value[org.login] = false;
+      }
+    });
+  }
+}, { immediate: true });
+
+// Get repo count for an org
+const getRepoCount = (orgLogin: string) => repoCounts.value[orgLogin] ?? 0;
+const isLoadingCount = (orgLogin: string) => loadingCounts.value[orgLogin] ?? true;
 </script>
