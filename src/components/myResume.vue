@@ -36,7 +36,7 @@ const pdfSource = computed(() => {
 });
 
 onMounted(async () => {
-  const resumeUrl = 'https://api.casjay.coffee/api/v1/me/info/resume';
+  const resumeUrl = 'https://api.casjay.coffee/api/v1/me/info/resume/download';
 
   // Initial delay consistent with useApi pattern
   await new Promise((resolve) => setTimeout(resolve, 500));
@@ -52,30 +52,23 @@ onMounted(async () => {
         await new Promise((resolve) => setTimeout(resolve, 1000));
       }
 
-      // First get the JSON response with PDF URL
+      // Fetch PDF directly from download endpoint
       // eslint-disable-next-line no-await-in-loop
-      const metaResponse = await axios.get(resumeUrl, {
-        timeout: 5000,
-      });
-
-      // Extract the PDF URL from the response
-      const pdfUrl = metaResponse.data.url || metaResponse.data.downloadUrl;
-      if (!pdfUrl) {
-        throw new Error('No PDF URL found in response');
-      }
-
-      // Now fetch the actual PDF
-      // eslint-disable-next-line no-await-in-loop
-      const pdfResponse = await axios.get(pdfUrl, {
+      const response = await axios.get(resumeUrl, {
         timeout: 10000,
         responseType: 'blob',
+        headers: {
+          Accept: 'application/pdf,application/octet-stream',
+        },
       });
 
-      pdfBlob.value = new Blob([pdfResponse.data]);
+      pdfBlob.value = new Blob([response.data], { type: 'application/pdf' });
       loading.value = false;
       return;
     } catch (err) {
       lastError = err as Error;
+      // eslint-disable-next-line no-console
+      console.error('Resume fetch error:', err);
     }
   }
 
