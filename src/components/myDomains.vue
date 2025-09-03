@@ -2,11 +2,7 @@
   <div v-if="loading">
     <spinner />
   </div>
-  <ErrorState
-    v-else-if="error"
-    title="Error Loading Data"
-    message="Unable to load domain information. Please try again later."
-  />
+  <ErrorState v-else-if="error" title="Error Loading Data" message="Unable to load domain information. Please try again later." />
   <EmptyState
     v-else-if="!data || (!data.domains && !data.subDomains)"
     title="No Domain Information Found"
@@ -62,8 +58,5 @@ import Spinner from '@/loaders/spinner.vue';
 import ErrorState from '@/components/ErrorState.vue';
 import EmptyState from '@/components/EmptyState.vue';
 
-const { data, loading, error } = useApi<DomainsData>(
-  'https://raw.githubusercontent.com/casjay/casjay/refs/heads/main/domains.json',
-  { timeout: 2000 },
-);
+const { data, loading, error } = useApi<DomainsData>('https://api.casjay.coffee/api/v1/me/domains', { timeout: 2000 });
 </script>

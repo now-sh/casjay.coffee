@@ -2,11 +2,7 @@
   <div v-if="loading">
     <spinner msgSpinner="Loading contact information" />
   </div>
-  <ErrorState
-    v-else-if="error"
-    title="Error Loading Data"
-    message="Unable to load contact information. Please try again later."
-  />
+  <ErrorState v-else-if="error" title="Error Loading Data" message="Unable to load contact information. Please try again later." />
   <EmptyState
     v-else-if="!data || Object.keys(data).length === 0"
     title="No Contact Information Found"
@@ -30,17 +26,8 @@
           </div>
           <div v-else>
             <div v-for="[name, url] in data.websites" :key="name" class="website-link-row">
-              <a
-                :href="`${url}`"
-                target="_blank"
-                rel="noopener noreferrer"
-                :title="name"
-              >
-                <img
-                  :src="getShieldBadge(name, 'website')"
-                  :alt="name"
-                  class="website-icon"
-                />
+              <a :href="`${url}`" target="_blank" rel="noopener noreferrer" :title="name">
+                <img :src="getShieldBadge(name, 'website')" :alt="name" class="website-icon" />
               </a>
             </div>
             <br />
@@ -100,17 +87,8 @@
           </div>
           <div v-else>
             <div v-for="[name, url, display] in data.chat" :key="`${name}`" class="chat-link-row">
-              <a
-                :href="`https://${url}`"
-                target="_blank"
-                rel="noopener noreferrer"
-                :title="`${name}: ${display}`"
-              >
-                <img
-                  :src="getShieldBadge(name, 'chat')"
-                  :alt="name"
-                  class="chat-icon"
-                />
+              <a :href="`https://${url}`" target="_blank" rel="noopener noreferrer" :title="`${name}: ${display}`">
+                <img :src="getShieldBadge(name, 'chat')" :alt="name" class="chat-icon" />
               </a>
               <span class="ms-2">{{ display }}</span>
             </div>
@@ -125,17 +103,8 @@
           </div>
           <div v-else>
             <div v-for="[name, url] in data.social" :key="`${name}`" class="social-link-row">
-              <a
-                :href="`https://${url}`"
-                target="_blank"
-                rel="noopener noreferrer"
-                :title="name"
-              >
-                <img
-                  :src="getShieldBadge(name, 'social')"
-                  :alt="name"
-                  class="social-icon"
-                />
+              <a :href="`https://${url}`" target="_blank" rel="noopener noreferrer" :title="name">
+                <img :src="getShieldBadge(name, 'social')" :alt="name" class="social-icon" />
               </a>
             </div>
             <br />
@@ -155,11 +124,7 @@ import ErrorState from '@/components/ErrorState.vue';
 import EmptyState from '@/components/EmptyState.vue';
 import { getShieldBadge } from '@/utils/badges';
 
-const { data, loading, error } = useApi<ProfileContact>(
-  'https://raw.githubusercontent.com/casjay/casjay/main/profile.json',
-  {},
-  { retries: 1, retryDelay: 1000, initialDelay: 500 },
-);
+const { data, loading, error } = useApi<ProfileContact>('https://api.casjay.coffee/api/v1/me/profile', {}, { retries: 1, retryDelay: 1000, initialDelay: 500 });
 </script>
 
 <style scoped>

@@ -3,17 +3,13 @@
     <div v-if="loading">
       <spinner msgSpinner="Loading data from the API" />
     </div>
-    <ErrorState
-      v-else-if="error"
-      title="Error Loading Resume"
-      message="Unable to load resume. Please try again later."
-    />
+    <ErrorState v-else-if="error" title="Error Loading Resume" message="Unable to load resume. Please try again later." />
     <div v-else>
       <div class="align-content-center">
         <div class="row justify-content-center">
           <div class="col-9">
             <vue-pdf-embed :source="pdfSource" class="" />
-            <a href="https://raw.githubusercontent.com/casjay/casjay/main/Resume-Tech.pdf" class="h2">Resume can be found here</a>
+            <a href="https://raw.githubusercontent.com/casjay/public/main/Resume-Tech.pdf" class="h2">Resume can be found here</a>
           </div>
         </div>
       </div>
@@ -40,7 +36,7 @@ const pdfSource = computed(() => {
 });
 
 onMounted(async () => {
-  const resumeUrl = 'https://raw.githubusercontent.com/casjay/casjay/main/Resume-Tech.pdf';
+  const resumeUrl = 'https://api.casjay.coffee/api/v1/me/info/resume';
 
   // Initial delay consistent with useApi pattern
   await new Promise((resolve) => setTimeout(resolve, 500));
