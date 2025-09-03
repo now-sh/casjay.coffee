@@ -63,9 +63,6 @@ export function useApi<T = any>(
 
         // Handle different response structures
         if (response.data) {
-          if (process.env.NODE_ENV !== 'production') {
-            console.log('API Response:', apiUrl, response.data);
-          }
           if (Array.isArray(response.data)) {
             data.value = response.data;
           } else if (typeof response.data === 'object' && response.data !== null && 'repos' in response.data) {
