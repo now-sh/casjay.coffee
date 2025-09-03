@@ -6,7 +6,7 @@
     <ErrorState v-else-if="error" message="Unable to load repositories. Please try again later." />
     <div v-else-if="showEmptyState" class="text-center">
       <EmptyState title="No Repositories Found" :message="errorMessage" />
-      <div v-if="isErrorResponse" class="mt-4">
+      <div class="mt-4">
         <a :href="`https://github.com/${orgName}`" class="btn btn-lg btn-primary" target="_blank" rel="noopener noreferrer">
           <i class="fab fa-github me-2" />
           View {{ orgName }} on GitHub
