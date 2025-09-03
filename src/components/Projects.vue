@@ -17,9 +17,18 @@
       />
       <div
         v-if="!Array.isArray(repos) && repos && 'github_profile' in repos && (repos as ApiErrorResponse).github_profile"
-        v-html="(repos as ApiErrorResponse).github_profile"
-        class="mt-3"
-      />
+        class="mt-4"
+      >
+        <a
+          :href="`https://github.com/${orgName}`"
+          class="btn btn-lg btn-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i class="fab fa-github me-2" />
+          View {{ orgName }} on GitHub
+        </a>
+      </div>
     </div>
     <div v-else>
       <h1>
