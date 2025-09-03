@@ -13,12 +13,14 @@
       message="No organizations were found."
     />
     <div v-else>
-      <div class="text-center mb-4">
+      <div class="text-center my-5">
         <h2>GitHub Organizations</h2>
-        <span class="badge bg-primary fs-5 p-3">
-          <i class="fas fa-building me-2" />
-          {{ orgs.length }} {{ orgs.length === 1 ? 'Organization' : 'Organizations' }}
-        </span>
+        <div class="mt-4 mb-4">
+          <a href="https://github.com/casjay" target="_blank" rel="noopener noreferrer" class="badge bg-primary fs-5 p-3 text-decoration-none">
+            <i class="fas fa-building me-2" />
+            casjay has {{ orgs.length }} {{ orgs.length === 1 ? 'Organization' : 'Organizations' }}
+          </a>
+        </div>
       </div>
       <div class="h-100 row row-cols-1 row-cols-md-3 justify-content-center">
         <div v-for="org in orgs" :key="org.id" class="col h-100 p-2">
@@ -34,15 +36,19 @@
             <div class="card-body">
               <h5 class="card-title">{{ org.login }}</h5>
               <p class="card-text">{{ org.description || 'No description available' }}</p>
-              <div class="mt-2">
+              <div class="mt-3">
                 <span v-if="isLoadingCount(org.login)" class="badge bg-secondary">
                   <i class="fas fa-spinner fa-spin me-1" />
                   Loading...
                 </span>
-                <span v-else class="badge bg-info fs-6 px-3 py-2">
+                <router-link
+                  v-else-if="getRepoCount(org.login) > 0"
+                  :to="`/Projects/${org.login}`"
+                  class="badge bg-info fs-6 px-3 py-2 text-decoration-none"
+                >
                   <i class="fas fa-code-branch me-2" />
-                  {{ getRepoCount(org.login) }} {{ getRepoCount(org.login) === 1 ? 'Repository' : 'Repositories' }}
-                </span>
+                  {{ org.login }} has {{ getRepoCount(org.login) }} {{ getRepoCount(org.login) === 1 ? 'Repository' : 'Repositories' }}
+                </router-link>
               </div>
             </div>
             <div class="card-footer">
