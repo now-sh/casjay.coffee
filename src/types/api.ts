@@ -46,3 +46,9 @@ export interface ApiResponse<T> {
   repos?: T;
   orgs?: T;
 }
+
+// Error/Empty response type
+export interface ApiErrorResponse {
+  message: string;
+  github_profile?: string;
+}
