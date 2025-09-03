@@ -13,6 +13,13 @@
       message="No organizations were found."
     />
     <div v-else>
+      <div class="text-center mb-4">
+        <h2>GitHub Organizations</h2>
+        <span class="badge bg-primary fs-5 p-3">
+          <i class="fas fa-building me-2" />
+          {{ orgs.length }} {{ orgs.length === 1 ? 'Organization' : 'Organizations' }}
+        </span>
+      </div>
       <div class="h-100 row row-cols-1 row-cols-md-3 justify-content-center">
         <div v-for="org in orgs" :key="org.id" class="col h-100 p-2">
           <div class="card border-danger h-100">
@@ -27,6 +34,16 @@
             <div class="card-body">
               <h5 class="card-title">{{ org.login }}</h5>
               <p class="card-text">{{ org.description || 'No description available' }}</p>
+              <div class="mt-2">
+                <span v-if="isLoadingCount(org.login)" class="badge bg-secondary">
+                  <i class="fas fa-spinner fa-spin me-1" />
+                  Loading...
+                </span>
+                <span v-else class="badge bg-info fs-6 px-3 py-2">
+                  <i class="fas fa-code-branch me-2" />
+                  {{ getRepoCount(org.login) }} {{ getRepoCount(org.login) === 1 ? 'Repository' : 'Repositories' }}
+                </span>
+              </div>
             </div>
             <div class="card-footer">
               <router-link
@@ -44,6 +61,7 @@
 </template>
 
 <script setup lang="ts">
+import { ref, watch } from 'vue';
 import Spinner from '@/loaders/spinner.vue';
 import ErrorState from '@/components/ErrorState.vue';
 import EmptyState from '@/components/EmptyState.vue';
@@ -53,4 +71,34 @@ import type { GitHubOrg } from '@/types/api';
 const { data: orgs, loading, error } = useApi<GitHubOrg[]>(
   'https://api.casjay.coffee/api/v1/social/github/orgs/casjay',
 );
+
+// Store repo counts for each org
+const repoCounts = ref<Record<string, number>>({});
+const loadingCounts = ref<Record<string, boolean>>({});
+
+// Fetch repo count for each org when orgs are loaded
+watch(orgs, async (newOrgs) => {
+  if (newOrgs && Array.isArray(newOrgs)) {
+    newOrgs.forEach(async (org) => {
+      loadingCounts.value[org.login] = true;
+      try {
+        const response = await fetch(`https://api.casjay.coffee/api/v1/social/github/repos/${org.login}`);
+        const data = await response.json();
+        if (Array.isArray(data)) {
+          repoCounts.value[org.login] = data.length;
+        } else {
+          repoCounts.value[org.login] = 0;
+        }
+      } catch {
+        repoCounts.value[org.login] = 0;
+      } finally {
+        loadingCounts.value[org.login] = false;
+      }
+    });
+  }
+}, { immediate: true });
+
+// Get repo count for an org
+const getRepoCount = (orgLogin: string) => repoCounts.value[orgLogin] ?? 0;
+const isLoadingCount = (orgLogin: string) => loadingCounts.value[orgLogin] ?? true;
 </script>
