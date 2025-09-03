@@ -86,9 +86,11 @@ async mounted() {
 
 ### API Endpoints
 
-- **Organizations**: `https://api.casjay.coffee/api/v1/git/orgs/casjay`
-- **Repositories**: `https://api.casjay.coffee/api/v1/git/repos/{orgName}`
-- **Profile Data**: `http://api.casjay.coffee/api/v1/me/info/profile`
+- **Organizations**: `https://api.casjay.coffee/api/v1/social/github/orgs/casjay`
+- **Repositories**: `https://api.casjay.coffee/api/v1/social/github/repos/{orgName}`
+- **Profile Data**: `https://api.casjay.coffee/api/v1/me/info/profile`
+- **Domains Data**: `https://api.casjay.coffee/api/v1/me/info/domains`
+- **Resume Data**: `https://api.casjay.coffee/api/v1/me/info/resume`
 
 ### File Structure
 
